@@ -217,11 +217,21 @@ public class DotsAndBoxesController {
 
    //endregion
 
-   private Game game;
+   @FXML
+   private Label lblPlayerOne;
+
+   @FXML
+   private Label lblPlayerOneScore;
+
+   @FXML
+   private Label lblPlayerTwo;
+
+   @FXML
+   private Label lblPlayerTwoScore;
 
    @FXML
    private void dotClicked(ActionEvent event) {
-      game = new Game();
+      Game game = new Game();
 
 
    }
