@@ -6,18 +6,9 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.text.NumberFormat;
-
 public class DotsAndBoxesController {
-   // formatters for currency and percentages
-   private static final NumberFormat currency = 
-      NumberFormat.getCurrencyInstance();
-   private static final NumberFormat percent = 
-      NumberFormat.getPercentInstance();
 
    // GUI controls defined in FXML and used by the controller's code
    //region Buttons
@@ -232,6 +223,7 @@ public class DotsAndBoxesController {
 
    // called by FXMLLoader to initialize the controller
    public void initialize() {
+
       //region InitializeButtons
       initializeButton(dot00);
       initializeButton(dot20);
