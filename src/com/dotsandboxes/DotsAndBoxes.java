@@ -13,6 +13,8 @@ public class DotsAndBoxes extends Application {
          FXMLLoader.load(getClass().getResource("DotsAndBoxes.fxml"));
 
       Scene scene = new Scene(root);
+      //cannot be resized as the labels don't align properly when moved.
+      stage.setResizable(false);
       stage.setTitle("Dots and Boxes"); // displayed in window's title bar
       stage.setScene(scene); // attach scene to stage
       stage.show(); // display the stage

@@ -6,11 +6,14 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 
 public class DotsAndBoxesController {
 
    // GUI controls defined in FXML and used by the controller's code
+   // Seperated into regions as they're several values defined.
+
    //region Buttons
    @FXML
    private Button dot00;
@@ -214,9 +217,11 @@ public class DotsAndBoxesController {
 
    //endregion
 
+   private Game game;
+
    @FXML
    private void dotClicked(ActionEvent event) {
-
+      game = new Game();
 
 
    }
