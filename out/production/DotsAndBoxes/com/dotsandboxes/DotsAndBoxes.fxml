@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="pane" hgap="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dotsandboxes.DotsAndBoxesController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Button fx:id="dot00" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      <Button fx:id="dot20" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+      <Button fx:id="dot40" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+      <Button fx:id="dot60" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+      <Button fx:id="dot80" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="8" GridPane.rowIndex="0" />
+      <Button fx:id="dot02" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+      <Button fx:id="dot22" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button fx:id="dot42" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+      <Button fx:id="dot62" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+      <Button fx:id="dot82" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+      <Button fx:id="dot04" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+      <Button fx:id="dot24" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Button fx:id="dot44" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Button fx:id="dot64" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+      <Button fx:id="dot84" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+      <Button fx:id="dot06" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+      <Button fx:id="dot26" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Button fx:id="dot46" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+      <Button fx:id="dot66" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+      <Button fx:id="dot86" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+      <Button fx:id="dot08" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+      <Button fx:id="dot28" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <Button fx:id="dot48" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+      <Button fx:id="dot68" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+      <Button fx:id="dot88" mnemonicParsing="false" onAction="#dotClicked" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+
+      <Label fx:id="lbl01" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+      <Label fx:id="lbl03" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+      <Label fx:id="lbl05" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+      <Label fx:id="lbl07" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+      <Label fx:id="lbl21" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label fx:id="lbl23" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Label fx:id="lbl25" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label fx:id="lbl27" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label fx:id="lbl41" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Label fx:id="lbl43" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Label fx:id="lbl45" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <Label fx:id="lbl47" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+      <Label fx:id="lbl61" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+      <Label fx:id="lbl63" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+      <Label fx:id="lbl65" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+      <Label fx:id="lbl67" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+      <Label fx:id="lbl81" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+      <Label fx:id="lbl83" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+      <Label fx:id="lbl85" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+      <Label fx:id="lbl87" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+
+      <Label fx:id="lbl10" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <Label fx:id="lbl30" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+      <Label fx:id="lbl50" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+      <Label fx:id="lbl70" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+      <Label fx:id="lbl12" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="lbl32" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <Label fx:id="lbl52" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+      <Label fx:id="lbl72" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+      <Label fx:id="lbl14" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label fx:id="lbl34" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Label fx:id="lbl54" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+      <Label fx:id="lbl74" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+      <Label fx:id="lbl16" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label fx:id="lbl36" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <Label fx:id="lbl56" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+      <Label fx:id="lbl76" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+      <Label fx:id="lbl18" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label fx:id="lbl38" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+      <Label fx:id="lbl58" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+      <Label fx:id="lbl78" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+
+      <Label fx:id="lblPlayerOne" text="Player 1: " GridPane.columnIndex="9" GridPane.rowIndex="4" />
+      <Label fx:id="lblPlayerOneScore" text="0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+      <Label fx:id="lblPlayerTwo" text="Player 2: " GridPane.columnIndex="9" GridPane.rowIndex="6" />
+      <Label fx:id="lblPlayerTwoScore" text="0" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+   </children>
+   <padding>
+      <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+   </padding>
+</GridPane>
