@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
 
 
 public class DotsAndBoxesController {
@@ -96,7 +97,7 @@ public class DotsAndBoxesController {
    private boolean flag88;
 
    //endregion
-   Button [] buttons = {dot00, dot02, dot04, dot06, dot08, dot20, dot22, dot24, dot26, dot28, dot40, dot42, dot44, dot46, dot48, dot60, dot62, dot64, dot66, dot68, dot80, dot82, dot84, dot86, dot88};
+   //Button [] buttons = new Button[dot00, dot02, dot04, dot06, dot08, dot20, dot22, dot24, dot26, dot28, dot40, dot42, dot44, dot46, dot48, dot60, dot62, dot64, dot66, dot68, dot80, dot82, dot84, dot86, dot88];
    //region VerticalLabels
    @FXML
    private Label lbl01;
@@ -237,1234 +238,768 @@ public class DotsAndBoxesController {
 
    private boolean player = true;
 
-//   private void mousePressed(MouseEvent ev) {
+   private void lineChange(Label lbl, Button btn, Button btn2, Boolean player) {
+      if (player)
+      {
+         lbl.setStyle("-fx-background-color: blue;");
+      }
+      else
+      {
+         lbl.setStyle("-fx-background-color: red;");
+      }
+
+      btn.setStyle("-fx-background-color: grey;");
+      btn2.setStyle("-fx-background-color: grey;");
+
+      this.player = !player;
+   }
+
+   //   private void mousePressed(MouseEvent ev) {
 //      dot02.setStyle("-fx-background-color: black;");
 //   }
    @FXML
    private void dotClicked(ActionEvent event) {
-      Game game = new Game();
       if(event.getSource() == dot00) {
          dot00.setStyle("-fx-background-color: black;");
          flag00 =true;
          if(flag20 == true && player == true){
-            lbl10.setStyle("-fx-background-color: blue;");
-            dot00.setStyle("-fx-background-color: grey;");
-            dot20.setStyle("-fx-background-color: grey;");
+            lineChange(lbl10, dot00, dot20, player);
             flag00 = false;
             flag20 = false;
-            player= false;
+            Player1Turn();
          }else if(flag20 == true && player == false) {
-            lbl10.setStyle("-fx-background-color: red;");
-            dot00.setStyle("-fx-background-color: grey;");
-            dot20.setStyle("-fx-background-color: grey;");
+            lineChange(lbl10, dot00, dot20, player);
+            Player1Turn();
             flag00 = false;
             flag20 = false;
-            player= true;
          }else if(flag02 == true && player == true){
-            lbl01.setStyle("-fx-background-color: blue;");
-            dot00.setStyle("-fx-background-color: grey;");
-            dot02.setStyle("-fx-background-color: grey;");
+            lineChange(lbl01, dot00, dot02, player);
             flag00 = false;
             flag02 = false;
-            player=false;
          }else if(flag02 == true && player == false){
-            lbl01.setStyle("-fx-background-color: red;");
-            dot00.setStyle("-fx-background-color: grey;");
-            dot02.setStyle("-fx-background-color: grey;");
+            lineChange(lbl01, dot00, dot02, player);
             flag00 = false;
             flag02 = false;
-            player=true;
          }
       }else if(event.getSource() == dot02) {
          dot02.setStyle("-fx-background-color: black;");
          flag02 =true;
          if(flag00 == true && player == true){
-            lbl01.setStyle("-fx-background-color: blue;");
-            dot02.setStyle("-fx-background-color: grey;");
-            dot00.setStyle("-fx-background-color: grey;");
+            lineChange(lbl01, dot02, dot00, player);
             flag02 = false;
             flag00 = false;
-            player= false;
          }else if(flag00 == true && player == false) {
-            lbl01.setStyle("-fx-background-color: red;");
-            dot02.setStyle("-fx-background-color: grey;");
-            dot00.setStyle("-fx-background-color: grey;");
+            lineChange(lbl01, dot02, dot00, player);
             flag02 = false;
             flag00 = false;
-            player= true;
          }else if(flag22 == true && player == true){
-            lbl12.setStyle("-fx-background-color: blue;");
-            dot02.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl12, dot02, dot22, player);
             flag02 = false;
             flag22 = false;
-            player=false;
          }else if(flag22 == true && player == false){
-            lbl12.setStyle("-fx-background-color: red;");
-            dot02.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl12, dot02, dot22, player);
             flag02 = false;
             flag22 = false;
-            player=true;
          }else if(flag04 == true && player == true){
-            lbl03.setStyle("-fx-background-color: blue;");
-            dot02.setStyle("-fx-background-color: grey;");
-            dot04.setStyle("-fx-background-color: grey;");
+            lineChange(lbl10, dot00, dot20, player);
             flag02 = false;
             flag04 = false;
-            player=false;
          }else if(flag04 == true && player == false){
-            lbl03.setStyle("-fx-background-color: red;");
-            dot02.setStyle("-fx-background-color: grey;");
-            dot04.setStyle("-fx-background-color: grey;");
+            lineChange(lbl10, dot00, dot20, player);
             flag02 = false;
             flag04 = false;
-            player=true;
          }
       }else if(event.getSource() == dot04) {
          dot04.setStyle("-fx-background-color: black;");
          flag04 =true;
          if(flag02 == true && player == true){
-            lbl03.setStyle("-fx-background-color: blue;");
-            dot04.setStyle("-fx-background-color: grey;");
-            dot02.setStyle("-fx-background-color: grey;");
+            lineChange(lbl03, dot04, dot02, player);
             flag04 = false;
             flag02 = false;
-            player= false;
          }else if(flag02 == true && player == false) {
-            lbl03.setStyle("-fx-background-color: red;");
-            dot04.setStyle("-fx-background-color: grey;");
-            dot02.setStyle("-fx-background-color: grey;");
+            lineChange(lbl03, dot04, dot02, player);
             flag04 = false;
             flag02 = false;
-            player= true;
          }else if(flag24 == true && player == true){
-            lbl14.setStyle("-fx-background-color: blue;");
-            dot04.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl14, dot04, dot24, player);
             flag04 = false;
             flag24 = false;
-            player=false;
          }else if(flag24 == true && player == false){
-            lbl14.setStyle("-fx-background-color: red;");
-            dot04.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl14, dot04, dot24, player);
             flag04 = false;
             flag24 = false;
-            player=true;
          }else if(flag06 == true && player == true){
-            lbl05.setStyle("-fx-background-color: blue;");
-            dot04.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl05, dot04, dot22, player);
             flag04 = false;
             flag06 = false;
-            player=false;
          }else if(flag06 == true && player == false){
-            lbl05.setStyle("-fx-background-color: red;");
-            dot04.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl05, dot04, dot22, player);
             flag04 = false;
             flag06 = false;
-            player=true;
          }
       }else if(event.getSource() == dot06) {
          dot06.setStyle("-fx-background-color: black;");
          flag06 =true;
          if(flag04 == true && player == true){
-            lbl05.setStyle("-fx-background-color: blue;");
-            dot06.setStyle("-fx-background-color: grey;");
-            dot04.setStyle("-fx-background-color: grey;");
+            lineChange(lbl05, dot06, dot04, player);
             flag06 = false;
             flag04 = false;
-            player= false;
          }else if(flag04 == true && player == false) {
-            lbl05.setStyle("-fx-background-color: red;");
-            dot06.setStyle("-fx-background-color: grey;");
-            dot04.setStyle("-fx-background-color: grey;");
+            lineChange(lbl05, dot06, dot04, player);
             flag06 = false;
             flag04 = false;
-            player = true;
          }else if(flag26 == true && player == true){
-            lbl16.setStyle("-fx-background-color: blue;");
-            dot06.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl16, dot06, dot26, player);
             flag06 = false;
             flag26 = false;
-            player= false;
          }else if(flag26 == true && player == false) {
-            lbl16.setStyle("-fx-background-color: red;");
-            dot06.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl16, dot06, dot26, player);
             flag06 = false;
             flag26 = false;
-            player = true;
          }else if(flag08 == true && player == true){
-            lbl07.setStyle("-fx-background-color: blue;");
-            dot06.setStyle("-fx-background-color: grey;");
-            dot08.setStyle("-fx-background-color: grey;");
+            lineChange(lbl07, dot06, dot08, player);
             flag06 = false;
             flag08 = false;
-            player= false;
          }else if(flag08 == true && player == false) {
-            lbl07.setStyle("-fx-background-color: blue;");
-            dot06.setStyle("-fx-background-color: grey;");
-            dot08.setStyle("-fx-background-color: grey;");
+            lineChange(lbl07, dot06, dot08, player);
             flag06 = false;
             flag08 = false;
-            player= true;
          }
       }else if(event.getSource() == dot08) {
          dot08.setStyle("-fx-background-color: black;");
          flag08 =true;
          if(flag06 == true && player == true){
-            lbl07.setStyle("-fx-background-color: blue;");
-            dot08.setStyle("-fx-background-color: grey;");
-            dot06.setStyle("-fx-background-color: grey;");
+            lineChange(lbl07, dot08, dot06, player);
             flag08 = false;
             flag06 = false;
-            player= false;
          }else if(flag06 == true && player == false) {
-            lbl07.setStyle("-fx-background-color: blue;");
-            dot08.setStyle("-fx-background-color: grey;");
-            dot06.setStyle("-fx-background-color: grey;");
+            lineChange(lbl07, dot08, dot06, player);
             flag08 = false;
             flag06 = false;
-            player= true;
          }else if(flag28 == true && player == true){
-            lbl18.setStyle("-fx-background-color: blue;");
-            dot08.setStyle("-fx-background-color: grey;");
-            dot28.setStyle("-fx-background-color: grey;");
+            lineChange(lbl18, dot08, dot28, player);
             flag08 = false;
             flag28 = false;
-            player= false;
          }else if(flag28 == true && player == false) {
-            lbl18.setStyle("-fx-background-color: blue;");
-            dot08.setStyle("-fx-background-color: grey;");
-            dot28.setStyle("-fx-background-color: grey;");
+            lineChange(lbl18, dot08, dot28, player);
             flag08 = false;
             flag28 = false;
-            player= true;
          }
       }else if(event.getSource() == dot20) {
          dot20.setStyle("-fx-background-color: black;");
          flag20 =true;
          if(flag00 == true && player == true){
-            lbl10.setStyle("-fx-background-color: blue;");
-            dot20.setStyle("-fx-background-color: grey;");
-            dot00.setStyle("-fx-background-color: grey;");
+            lineChange(lbl10, dot20, dot00, player);
             flag20 = false;
             flag00 = false;
-            player= false;
          }else if(flag00 == true && player == false) {
-            lbl10.setStyle("-fx-background-color: blue;");
-            dot20.setStyle("-fx-background-color: grey;");
-            dot00.setStyle("-fx-background-color: grey;");
+            lineChange(lbl10, dot20, dot00, player);
             flag20 = false;
             flag00 = false;
-            player= true;
          }else if(flag22 == true && player == true){
-            lbl21.setStyle("-fx-background-color: blue;");
-            dot20.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl21, dot20, dot22, player);
             flag20 = false;
             flag22 = false;
-            player= false;
          }else if(flag22 == true && player == false) {
-            lbl21.setStyle("-fx-background-color: blue;");
-            dot20.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl21, dot20, dot22, player);
             flag20 = false;
             flag22 = false;
-            player= true;
          }else if(flag40 == true && player == true){
-            lbl30.setStyle("-fx-background-color: blue;");
-            dot20.setStyle("-fx-background-color: grey;");
-            dot40.setStyle("-fx-background-color: grey;");
+            lineChange(lbl30, dot20, dot40, player);
             flag20 = false;
             flag40 = false;
-            player= false;
          }else if(flag40 == true && player == false) {
-            lbl30.setStyle("-fx-background-color: blue;");
-            dot20.setStyle("-fx-background-color: grey;");
-            dot40.setStyle("-fx-background-color: grey;");
+            lineChange(lbl30, dot20, dot40, player);
             flag20 = false;
             flag40 = false;
-            player= true;
          }
       }else if(event.getSource() == dot22) {
          dot22.setStyle("-fx-background-color: black;");
          flag22 =true;
          if(flag20 == true && player == true){
-            lbl21.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot20.setStyle("-fx-background-color: grey;");
+            lineChange(lbl21, dot22, dot20, player);
             flag22 = false;
             flag20 = false;
-            player= false;
          }else if(flag20 == true && player == false) {
-            lbl21.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot20.setStyle("-fx-background-color: grey;");
+            lineChange(lbl21, dot22, dot20, player);
             flag22 = false;
             flag20 = false;
-            player= true;
          }else if(flag42 == true && player == true){
-            lbl32.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl32, dot22, dot42, player);
             flag22 = false;
             flag42 = false;
-            player= false;
          }else if(flag42 == true && player == false) {
-            lbl32.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl32, dot22, dot42, player);
             flag22 = false;
             flag42 = false;
-            player= true;
          }else if(flag24 == true && player == true){
-            lbl23.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl23, dot22, dot24, player);
             flag22 = false;
             flag24 = false;
-            player= false;
          }else if(flag24 == true && player == false) {
-            lbl23.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl23, dot22, dot24, player);
             flag22 = false;
             flag24 = false;
-            player= true;
          }else if(flag02 == true && player == true){
-            lbl12.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot02.setStyle("-fx-background-color: grey;");
+            lineChange(lbl12, dot22, dot02, player);
             flag22 = false;
             flag02 = false;
-            player= false;
          }else if(flag02 == true && player == false) {
-            lbl12.setStyle("-fx-background-color: blue;");
-            dot22.setStyle("-fx-background-color: grey;");
-            dot02.setStyle("-fx-background-color: grey;");
+            lineChange(lbl12, dot22, dot02, player);
             flag22 = false;
             flag02 = false;
-            player= true;
          }
       }else if(event.getSource() == dot24) {
          dot24.setStyle("-fx-background-color: black;");
          flag24 =true;
          if(flag22 == true && player == true){
-            lbl23.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl23, dot24, dot22, player);
             flag24 = false;
             flag22 = false;
-            player= false;
          }else if(flag22 == true && player == false) {
-            lbl23.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl23, dot24, dot22, player);
             flag24 = false;
             flag22 = false;
-            player= true;
          }else if(flag44 == true && player == true){
-            lbl34.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl34, dot24, dot44, player);
             flag24 = false;
             flag44 = false;
-            player= false;
          }else if(flag44 == true && player == false) {
-            lbl34.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl34, dot24, dot44, player);
             flag24 = false;
             flag44 = false;
-            player= true;
          }else if(flag26 == true && player == true){
-            lbl25.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl25, dot24, dot26, player);
             flag24 = false;
             flag26 = false;
-            player= false;
          }else if(flag26 == true && player == false) {
-            lbl25.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl25, dot24, dot26, player);
             flag24 = false;
             flag26 = false;
-            player= true;
          }else if(flag04 == true && player == true){
-            lbl14.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot04.setStyle("-fx-background-color: grey;");
+            lineChange(lbl14, dot24, dot04, player);
             flag24 = false;
             flag04 = false;
-            player= false;
          }else if(flag04 == true && player == false) {
-            lbl14.setStyle("-fx-background-color: blue;");
-            dot24.setStyle("-fx-background-color: grey;");
-            dot04.setStyle("-fx-background-color: grey;");
+            lineChange(lbl14, dot24, dot04, player);
             flag24 = false;
             flag04 = false;
-            player= false;
-            player= true;
          }
       }else if(event.getSource() == dot26) {
          dot26.setStyle("-fx-background-color: black;");
          flag26 =true;
          if(flag24 == true && player == true){
-            lbl25.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl25, dot26, dot24, player);
             flag26 = false;
             flag24 = false;
-            player= false;
          }else if(flag24 == true && player == false) {
-            lbl25.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl25, dot26, dot24, player);
             flag26 = false;
             flag24 = false;
-            player= true;
          }else if(flag46 == true && player == true){
-            lbl36.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl36, dot26, dot46, player);
             flag26 = false;
             flag46 = false;
-            player= false;
          }else if(flag46 == true && player == false) {
-            lbl36.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl36, dot26, dot46, player);
             flag26 = false;
             flag46 = false;
-            player= true;
          }else if(flag28 == true && player == true){
-            lbl27.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot28.setStyle("-fx-background-color: grey;");
+            lineChange(lbl27, dot26, dot28, player);
             flag26 = false;
             flag28 = false;
-            player= false;
          }else if(flag28 == true && player == false) {
-            lbl27.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot28.setStyle("-fx-background-color: grey;");
+            lineChange(lbl27, dot26, dot28, player);
             flag26 = false;
             flag28 = false;
-            player= true;
          }else if(flag06 == true && player == true){
-            lbl16.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot06.setStyle("-fx-background-color: grey;");
+            lineChange(lbl16, dot26, dot06, player);
             flag26 = false;
             flag06 = false;
-            player= false;
          }else if(flag06 == true && player == false) {
-            lbl16.setStyle("-fx-background-color: blue;");
-            dot26.setStyle("-fx-background-color: grey;");
-            dot06.setStyle("-fx-background-color: grey;");
+            lineChange(lbl16, dot26, dot06, player);
             flag26 = false;
             flag06 = false;
-            player= true;
          }
       }else if(event.getSource() == dot28) {
          dot28.setStyle("-fx-background-color: black;");
          flag28 =true;
          if(flag26 == true && player == true){
-            lbl27.setStyle("-fx-background-color: blue;");
-            dot28.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl27, dot28, dot26, player);
             flag28 = false;
             flag26 = false;
-            player= false;
          }else if(flag26 == true && player == false) {
-            lbl27.setStyle("-fx-background-color: blue;");
-            dot28.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl27, dot28, dot26, player);
             flag28 = false;
             flag26 = false;
-            player= true;
          }else if(flag48 == true && player == true){
-            lbl38.setStyle("-fx-background-color: blue;");
-            dot28.setStyle("-fx-background-color: grey;");
-            dot48.setStyle("-fx-background-color: grey;");
+            lineChange(lbl38, dot28, dot48, player);
             flag28 = false;
             flag48 = false;
-            player= false;
          }else if(flag48 == true && player == false) {
-            lbl38.setStyle("-fx-background-color: blue;");
-            dot28.setStyle("-fx-background-color: grey;");
-            dot48.setStyle("-fx-background-color: grey;");
+            lineChange(lbl38, dot28, dot48, player);
             flag28 = false;
             flag48 = false;
-            player= true;
          }else if(flag08 == true && player == true){
-            lbl18.setStyle("-fx-background-color: blue;");
-            dot28.setStyle("-fx-background-color: grey;");
-            dot08.setStyle("-fx-background-color: grey;");
+            lineChange(lbl18, dot28, dot08, player);
             flag28 = false;
             flag08 = false;
-            player= false;
          }else if(flag08 == true && player == false) {
-            lbl18.setStyle("-fx-background-color: blue;");
-            dot28.setStyle("-fx-background-color: grey;");
-            dot08.setStyle("-fx-background-color: grey;");
+            lineChange(lbl18, dot28, dot08, player);
             flag28 = false;
             flag08 = false;
-            player= true;
          }
       }else if(event.getSource() == dot40) {
          dot40.setStyle("-fx-background-color: black;");
          flag40 =true;
          if(flag60 == true && player == true){
-            lbl50.setStyle("-fx-background-color: blue;");
-            dot40.setStyle("-fx-background-color: grey;");
-            dot60.setStyle("-fx-background-color: grey;");
+            lineChange(lbl50, dot40, dot60, player);
             flag40 = false;
             flag60 = false;
-            player= false;
          }else if(flag60 == true && player == false) {
-            lbl50.setStyle("-fx-background-color: blue;");
-            dot40.setStyle("-fx-background-color: grey;");
-            dot60.setStyle("-fx-background-color: grey;");
+            lineChange(lbl50, dot40, dot60, player);
             flag40 = false;
             flag60 = false;
-            player= true;
          }else if(flag42 == true && player == true){
-            lbl41.setStyle("-fx-background-color: blue;");
-            dot40.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl41, dot40, dot42, player);
             flag40 = false;
             flag42 = false;
-            player= false;
          }else if(flag42 == true && player == false) {
-            lbl41.setStyle("-fx-background-color: blue;");
-            dot40.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl41, dot40, dot42, player);
             flag40 = false;
             flag42 = false;
-            player= true;
          }else if(flag20 == true && player == true){
-            lbl30.setStyle("-fx-background-color: blue;");
-            dot40.setStyle("-fx-background-color: grey;");
-            dot20.setStyle("-fx-background-color: grey;");
+            lineChange(lbl30, dot40, dot20, player);
             flag40 = false;
             flag20 = false;
-            player= false;
          }else if(flag20 == true && player == false) {
-            lbl30.setStyle("-fx-background-color: blue;");
-            dot40.setStyle("-fx-background-color: grey;");
-            dot20.setStyle("-fx-background-color: grey;");
+            lineChange(lbl30, dot40, dot20, player);
             flag40 = false;
             flag20 = false;
-            player= true;
          }
       }else if(event.getSource() == dot42) {
          dot42.setStyle("-fx-background-color: black;");
          flag42 =true;
          if(flag40== true && player == true){
-            lbl41.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot40.setStyle("-fx-background-color: grey;");
+            lineChange(lbl41, dot42, dot40, player);
             flag42 = false;
             flag40 = false;
-            player= false;
          }else if(flag40 == true && player == false) {
-            lbl41.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot40.setStyle("-fx-background-color: grey;");
+            lineChange(lbl41, dot42, dot40, player);
             flag42 = false;
             flag40 = false;
-            player= true;
          }else if(flag62== true && player == true){
-            lbl52.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl52, dot42, dot62, player);
             flag42 = false;
             flag62 = false;
-            player= false;
          }else if(flag62 == true && player == false) {
-            lbl52.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl52, dot42, dot62, player);
             flag42 = false;
             flag62 = false;
-            player= true;
          }else if(flag44== true && player == true){
-            lbl43.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl43, dot42, dot44, player);
             flag42 = false;
             flag44 = false;
-            player= false;
          }else if(flag44 == true && player == false) {
-            lbl43.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl43, dot42, dot44, player);
             flag42 = false;
             flag44 = false;
-            player= true;
          }else if(flag22== true && player == true){
-            lbl32.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl32, dot42, dot22, player);
             flag42 = false;
             flag22 = false;
-            player= false;
          }else if(flag22 == true && player == false) {
-            lbl32.setStyle("-fx-background-color: blue;");
-            dot42.setStyle("-fx-background-color: grey;");
-            dot22.setStyle("-fx-background-color: grey;");
+            lineChange(lbl32, dot42, dot22, player);
             flag42 = false;
             flag22 = false;
-            player= false;
-            player= true;
          }
       }else if(event.getSource() == dot44) {
          dot44.setStyle("-fx-background-color: black;");
          flag44 =true;
          if(flag42== true && player == true){
-            lbl43.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl43, dot44, dot42, player);
             flag44 = false;
             flag42 = false;
-            player= false;
          }else if(flag42 == true && player == false) {
-            lbl43.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl43, dot44, dot42, player);
             flag44 = false;
             flag42 = false;
-            player= true;
          }else if(flag64== true && player == true){
-            lbl54.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl54, dot44, dot64, player);
             flag44 = false;
             flag64 = false;
-            player= false;
          }else if(flag64 == true && player == false) {
-            lbl54.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl54, dot44, dot64, player);
             flag44 = false;
             flag64 = false;
-            player= true;
          }else if(flag46== true && player == true){
-            lbl45.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl45, dot44, dot46, player);
             flag44 = false;
             flag46 = false;
-            player= false;
          }else if(flag46 == true && player == false) {
-            lbl45.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl45, dot44, dot46, player);
             flag44 = false;
             flag46 = false;
-            player= true;
          }else if(flag24== true && player == true){
-            lbl34.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl34, dot44, dot24, player);
             flag44 = false;
             flag24 = false;
-            player= false;
          }else if(flag24 == true && player == false) {
-            lbl34.setStyle("-fx-background-color: blue;");
-            dot44.setStyle("-fx-background-color: grey;");
-            dot24.setStyle("-fx-background-color: grey;");
+            lineChange(lbl34, dot44, dot24, player);
             flag44 = false;
             flag24 = false;
-            player= true;
          }
       }else if(event.getSource() == dot46) {
          dot46.setStyle("-fx-background-color: black;");
          flag46 =true;
          if(flag44== true && player == true){
-            lbl45.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl45, dot44, dot44, player);
             flag46 = false;
             flag44 = false;
-            player= false;
          }else if(flag44 == true && player == false) {
-            lbl45.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl45, dot44, dot44, player);
             flag46 = false;
             flag44 = false;
-            player= true;
          }else if(flag66== true && player == true){
-            lbl56.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl56, dot46, dot66, player);
             flag46 = false;
             flag66 = false;
-            player= false;
          }else if(flag66 == true && player == false) {
-            lbl56.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl56, dot46, dot66, player);
             flag46 = false;
             flag66 = false;
-            player= true;
          }else if(flag48== true && player == true){
-            lbl47.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot48.setStyle("-fx-background-color: grey;");
+            lineChange(lbl47, dot46, dot48, player);
             flag46 = false;
             flag48 = false;
-            player= false;
          }else if(flag48 == true && player == false) {
-            lbl47.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot48.setStyle("-fx-background-color: grey;");
+            lineChange(lbl47, dot46, dot48, player);
             flag46 = false;
             flag48 = false;
-            player= true;
          }else if(flag26== true && player == true){
-            lbl36.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl36, dot46, dot26, player);
             flag46 = false;
             flag26 = false;
-            player= false;
          }else if(flag26 == true && player == false) {
-            lbl36.setStyle("-fx-background-color: blue;");
-            dot46.setStyle("-fx-background-color: grey;");
-            dot26.setStyle("-fx-background-color: grey;");
+            lineChange(lbl36, dot46, dot26, player);
             flag46 = false;
             flag26 = false;
-            player= true;
          }
       }else if(event.getSource() == dot48) {
          dot48.setStyle("-fx-background-color: black;");
          flag48 =true;
          if(flag46== true && player == true){
-            lbl47.setStyle("-fx-background-color: blue;");
-            dot48.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl47, dot48, dot46, player);
             flag48 = false;
             flag46 = false;
-            player= false;
          }else if(flag46 == true && player == false) {
-            lbl47.setStyle("-fx-background-color: blue;");
-            dot48.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl47, dot48, dot46, player);
             flag48 = false;
             flag46 = false;
-            player= true;
          }else if(flag68== true && player == true){
-            lbl58.setStyle("-fx-background-color: blue;");
-            dot48.setStyle("-fx-background-color: grey;");
-            dot68.setStyle("-fx-background-color: grey;");
+            lineChange(lbl58, dot48, dot68, player);
             flag48 = false;
             flag68 = false;
-            player= false;
          }else if(flag68 == true && player == false) {
-            lbl58.setStyle("-fx-background-color: blue;");
-            dot48.setStyle("-fx-background-color: grey;");
-            dot68.setStyle("-fx-background-color: grey;");
+            lineChange(lbl58, dot48, dot68, player);
             flag48 = false;
             flag68 = false;
-            player= true;
          }else if(flag28== true && player == true){
-            lbl38.setStyle("-fx-background-color: blue;");
-            dot48.setStyle("-fx-background-color: grey;");
-            dot28.setStyle("-fx-background-color: grey;");
+            lineChange(lbl38, dot48, dot28, player);
             flag48 = false;
             flag28 = false;
-            player= false;
          }else if(flag28 == true && player == false) {
-            lbl38.setStyle("-fx-background-color: blue;");
-            dot48.setStyle("-fx-background-color: grey;");
-            dot28.setStyle("-fx-background-color: grey;");
+            lineChange(lbl38, dot48, dot28, player);
             flag48 = false;
             flag28 = false;
-            player= true;
          }
       }else if(event.getSource() == dot60) {
          dot60.setStyle("-fx-background-color: black;");
          flag60 =true;
          if(flag80== true && player == true){
-            lbl70.setStyle("-fx-background-color: blue;");
-            dot60.setStyle("-fx-background-color: grey;");
-            dot80.setStyle("-fx-background-color: grey;");
+            lineChange(lbl70, dot60, dot80, player);
             flag60 = false;
             flag80 = false;
-            player= false;
          }else if(flag80 == true && player == false) {
-            lbl70.setStyle("-fx-background-color: blue;");
-            dot60.setStyle("-fx-background-color: grey;");
-            dot80.setStyle("-fx-background-color: grey;");
+            lineChange(lbl70, dot60, dot80, player);
             flag60 = false;
             flag80 = false;
-            player= true;
          }else if(flag62== true && player == true){
-            lbl61.setStyle("-fx-background-color: blue;");
-            dot60.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl61, dot60, dot62, player);
             flag60 = false;
             flag62 = false;
-            player= false;
          }else if(flag62 == true && player == false) {
-            lbl61.setStyle("-fx-background-color: blue;");
-            dot60.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl61, dot60, dot62, player);
             flag60 = false;
             flag62 = false;
-            player= true;
          }else if(flag40== true && player == true){
-            lbl50.setStyle("-fx-background-color: blue;");
-            dot60.setStyle("-fx-background-color: grey;");
-            dot40.setStyle("-fx-background-color: grey;");
+            lineChange(lbl50, dot60, dot40, player);
             flag60 = false;
             flag40 = false;
-            player= false;
          }else if(flag40 == true && player == false) {
-            lbl50.setStyle("-fx-background-color: blue;");
-            dot60.setStyle("-fx-background-color: grey;");
-            dot40.setStyle("-fx-background-color: grey;");
+            lineChange(lbl50, dot60, dot40, player);
             flag60 = false;
             flag40 = false;
-            player= true;
          }
       }else if(event.getSource() == dot62) {
          dot62.setStyle("-fx-background-color: black;");
          flag62 =true;
          if(flag60== true && player == true){
-            lbl61.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot60.setStyle("-fx-background-color: grey;");
+            lineChange(lbl61, dot62, dot60, player);
             flag62 = false;
             flag60 = false;
-            player= false;
          }else if(flag60 == true && player == false) {
-            lbl61.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot60.setStyle("-fx-background-color: grey;");
+            lineChange(lbl61, dot62, dot60, player);
             flag62 = false;
             flag60 = false;
-            player= true;
          }else if(flag82== true && player == true){
-            lbl72.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot82.setStyle("-fx-background-color: grey;");
+            lineChange(lbl72, dot62, dot82, player);
             flag62 = false;
             flag82 = false;
-            player= false;
          }else if(flag82 == true && player == false) {
-            lbl72.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot82.setStyle("-fx-background-color: grey;");
+            lineChange(lbl72, dot62, dot82, player);
             flag62 = false;
             flag82 = false;
-            player= true;
          }else if(flag64== true && player == true){
-            lbl63.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl63, dot62, dot64, player);
             flag62 = false;
             flag64 = false;
-            player= false;
          }else if(flag64 == true && player == false) {
-            lbl63.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl63, dot62, dot64, player);
             flag62 = false;
             flag64 = false;
-            player= true;
          }else if(flag42== true && player == true){
-            lbl52.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl52, dot62, dot42, player);
             flag62 = false;
             flag42 = false;
-            player= false;
          }else if(flag42 == true && player == false) {
-            lbl52.setStyle("-fx-background-color: blue;");
-            dot62.setStyle("-fx-background-color: grey;");
-            dot42.setStyle("-fx-background-color: grey;");
+            lineChange(lbl52, dot62, dot42, player);
             flag62 = false;
             flag42 = false;
-            player= false;
-            player= true;
          }
       }else if(event.getSource() == dot64) {
          dot64.setStyle("-fx-background-color: black;");
          flag64 =true;
          if(flag62== true && player == true){
-            lbl63.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl63, dot64, dot62, player);
             flag64 = false;
             flag62 = false;
-            player= false;
          }else if(flag62 == true && player == false) {
-            lbl63.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl63, dot64, dot62, player);
             flag64 = false;
             flag62 = false;
-            player= true;
          }else if(flag84== true && player == true){
-            lbl74.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot84.setStyle("-fx-background-color: grey;");
+            lineChange(lbl74, dot64, dot84, player);
             flag64 = false;
             flag84 = false;
-            player= false;
          }else if(flag84 == true && player == false) {
-            lbl74.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot84.setStyle("-fx-background-color: grey;");
+            lineChange(lbl74, dot64, dot84, player);
             flag64 = false;
             flag84 = false;
-            player= true;
          }else if(flag66== true && player == true){
-            lbl65.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl65, dot64, dot66, player);
             flag64 = false;
             flag66 = false;
-            player= false;
          }else if(flag66 == true && player == false) {
-            lbl65.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl65, dot64, dot66, player);
             flag64 = false;
             flag66 = false;
-            player= true;
          }else if(flag44== true && player == true){
-            lbl54.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl54, dot64, dot44, player);
             flag64 = false;
             flag44 = false;
-            player= false;
          }else if(flag44 == true && player == false) {
-            lbl54.setStyle("-fx-background-color: blue;");
-            dot64.setStyle("-fx-background-color: grey;");
-            dot44.setStyle("-fx-background-color: grey;");
+            lineChange(lbl54, dot64, dot44, player);
             flag64 = false;
             flag44 = false;
-            player= true;
          }
       }else if(event.getSource() == dot66) {
          dot66.setStyle("-fx-background-color: black;");
          flag66 =true;
          if(flag64== true && player == true){
-            lbl65.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl65, dot66, dot64, player);
             flag66 = false;
             flag64 = false;
-            player= false;
          }else if(flag64 == true && player == false) {
-            lbl65.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl65, dot66, dot64, player);
             flag66 = false;
             flag64 = false;
-            player= true;
          }else if(flag86== true && player == true){
-            lbl76.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot86.setStyle("-fx-background-color: grey;");
+            lineChange(lbl76, dot66, dot86, player);
             flag66 = false;
             flag86 = false;
-            player= false;
          }else if(flag86 == true && player == false) {
-            lbl76.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot86.setStyle("-fx-background-color: grey;");
+            lineChange(lbl76, dot66, dot86, player);
             flag66 = false;
             flag86 = false;
-            player= true;
          }else if(flag68== true && player == true){
-            lbl67.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot68.setStyle("-fx-background-color: grey;");
+            lineChange(lbl67, dot66, dot68, player);
             flag66 = false;
             flag68 = false;
-            player= false;
          }else if(flag68 == true && player == false) {
-            lbl67.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot68.setStyle("-fx-background-color: grey;");
+            lineChange(lbl67, dot66, dot68, player);
             flag66 = false;
             flag68 = false;
-            player= true;
          }else if(flag46== true && player == true){
-            lbl56.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl56, dot66, dot46, player);
             flag66 = false;
             flag46 = false;
-            player= false;
          }else if(flag46 == true && player == false) {
-            lbl56.setStyle("-fx-background-color: blue;");
-            dot66.setStyle("-fx-background-color: grey;");
-            dot46.setStyle("-fx-background-color: grey;");
+            lineChange(lbl56, dot66, dot46, player);
             flag66 = false;
             flag46 = false;
-            player= true;
          }
       }else if(event.getSource() == dot68) {
          dot68.setStyle("-fx-background-color: black;");
          flag68 =true;
          if(flag66== true && player == true){
-            lbl67.setStyle("-fx-background-color: blue;");
-            dot68.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl67, dot68, dot66, player);
             flag68 = false;
             flag66 = false;
-            player= false;
          }else if(flag66 == true && player == false) {
-            lbl67.setStyle("-fx-background-color: blue;");
-            dot68.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl67, dot68, dot66, player);
             flag68 = false;
             flag66 = false;
-            player= true;
          }else if(flag88== true && player == true){
-            lbl78.setStyle("-fx-background-color: blue;");
-            dot68.setStyle("-fx-background-color: grey;");
-            dot88.setStyle("-fx-background-color: grey;");
+            lineChange(lbl78, dot68, dot88, player);
             flag68 = false;
             flag88 = false;
-            player= false;
          }else if(flag88 == true && player == false) {
-            lbl78.setStyle("-fx-background-color: blue;");
-            dot68.setStyle("-fx-background-color: grey;");
-            dot88.setStyle("-fx-background-color: grey;");
+            lineChange(lbl78, dot68, dot88, player);
             flag68 = false;
             flag88 = false;
-            player= true;
          }else if(flag48== true && player == true){
-            lbl58.setStyle("-fx-background-color: blue;");
-            dot68.setStyle("-fx-background-color: grey;");
-            dot48.setStyle("-fx-background-color: grey;");
+            lineChange(lbl58, dot68, dot48, player);
             flag68 = false;
             flag48 = false;
-            player= false;
          }else if(flag48 == false && player == false) {
-            lbl58.setStyle("-fx-background-color: blue;");
-            dot68.setStyle("-fx-background-color: grey;");
-            dot48.setStyle("-fx-background-color: grey;");
+            lineChange(lbl58, dot68, dot48, player);
             flag68 = false;
             flag48 = false;
-            player= true;
          }
       }else if(event.getSource() == dot80) {
          dot80.setStyle("-fx-background-color: black;");
          flag80 =true;
          if(flag82== true && player == true){
-            lbl81.setStyle("-fx-background-color: blue;");
-            dot80.setStyle("-fx-background-color: grey;");
-            dot82.setStyle("-fx-background-color: grey;");
+            lineChange(lbl81, dot80, dot82, player);
             flag80 = false;
             flag82 = false;
-            player= false;
          }else if(flag82 == true && player == false) {
-            lbl81.setStyle("-fx-background-color: blue;");
-            dot80.setStyle("-fx-background-color: grey;");
-            dot82.setStyle("-fx-background-color: grey;");
+            lineChange(lbl81, dot80, dot82, player);
             flag80 = false;
             flag82 = false;
-            player= true;
          }else if(flag60== true && player == true){
-            lbl70.setStyle("-fx-background-color: blue;");
-            dot80.setStyle("-fx-background-color: grey;");
-            dot60.setStyle("-fx-background-color: grey;");
+            lineChange(lbl70, dot80, dot60, player);
             flag80 = false;
             flag60 = false;
-            player= false;
          }else if(flag60 == true && player == false) {
-            lbl70.setStyle("-fx-background-color: blue;");
-            dot80.setStyle("-fx-background-color: grey;");
-            dot60.setStyle("-fx-background-color: grey;");
+            lineChange(lbl70, dot80, dot60, player);
             flag80 = false;
             flag60 = false;
-            player= true;
          }
       }else if(event.getSource() == dot82) {
          dot82.setStyle("-fx-background-color: black;");
          flag82 =true;
          if(flag80== true && player == true){
-            lbl81.setStyle("-fx-background-color: blue;");
-            dot82.setStyle("-fx-background-color: grey;");
-            dot80.setStyle("-fx-background-color: grey;");
+            lineChange(lbl81, dot82, dot80, player);
             flag82 = false;
             flag80 = false;
-            player= false;
          }else if(flag80 == true && player == false) {
-            lbl81.setStyle("-fx-background-color: blue;");
-            dot82.setStyle("-fx-background-color: grey;");
-            dot80.setStyle("-fx-background-color: grey;");
+            lineChange(lbl81, dot82, dot80, player);
             flag82 = false;
             flag80 = false;
-            player= true;
          }else if(flag84== true && player == true){
-            lbl83.setStyle("-fx-background-color: blue;");
-            dot82.setStyle("-fx-background-color: grey;");
-            dot84.setStyle("-fx-background-color: grey;");
+            lineChange(lbl83, dot82, dot84, player);
             flag82 = false;
             flag84 = false;
-            player= false;
          }else if(flag84 == true && player == false) {
-            lbl83.setStyle("-fx-background-color: blue;");
-            dot82.setStyle("-fx-background-color: grey;");
-            dot84.setStyle("-fx-background-color: grey;");
+            lineChange(lbl83, dot82, dot84, player);
             flag82 = false;
             flag84 = false;
-            player= true;
          }else if(flag62== true && player == true){
-            lbl72.setStyle("-fx-background-color: blue;");
-            dot82.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl72, dot82, dot62, player);
             flag82 = false;
             flag62 = false;
-            player= false;
          }else if(flag62 == true && player == false) {
-            lbl72.setStyle("-fx-background-color: blue;");
-            dot82.setStyle("-fx-background-color: grey;");
-            dot62.setStyle("-fx-background-color: grey;");
+            lineChange(lbl72, dot82, dot62, player);
             flag82 = false;
             flag62 = false;
-            player= true;
          }
       }else if(event.getSource() == dot84) {
          dot84.setStyle("-fx-background-color: black;");
          flag84 =true;
          if(flag82== true && player == true){
-            lbl83.setStyle("-fx-background-color: blue;");
-            dot84.setStyle("-fx-background-color: grey;");
-            dot82.setStyle("-fx-background-color: grey;");
+            lineChange(lbl83, dot84, dot82, player);
             flag84 = false;
             flag82 = false;
-            player= false;
          }else if(flag82 == true && player == false) {
-            lbl83.setStyle("-fx-background-color: blue;");
-            dot84.setStyle("-fx-background-color: grey;");
-            dot82.setStyle("-fx-background-color: grey;");
+            lineChange(lbl83, dot84, dot82, player);
             flag84 = false;
             flag82 = false;
-            player= true;
          }else if(flag86== true && player == true){
-            lbl85.setStyle("-fx-background-color: blue;");
-            dot84.setStyle("-fx-background-color: grey;");
-            dot86.setStyle("-fx-background-color: grey;");
+            lineChange(lbl85, dot84, dot86, player);
             flag84 = false;
             flag86 = false;
-            player= false;
          }else if(flag86 == true && player == false) {
-            lbl85.setStyle("-fx-background-color: blue;");
-            dot84.setStyle("-fx-background-color: grey;");
-            dot86.setStyle("-fx-background-color: grey;");
+            lineChange(lbl85, dot84, dot86, player);
             flag84 = false;
             flag86 = false;
-            player= true;
          }else if(flag64== true && player == true){
-            lbl74.setStyle("-fx-background-color: blue;");
-            dot84.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl74, dot84, dot64, player);
             flag84 = false;
             flag64 = false;
-            player= false;
          }else if(flag64 == true && player == false) {
-            lbl74.setStyle("-fx-background-color: blue;");
-            dot84.setStyle("-fx-background-color: grey;");
-            dot64.setStyle("-fx-background-color: grey;");
+            lineChange(lbl74, dot84, dot64, player);
             flag84 = false;
             flag64 = false;
-            player= true;
          }
       }else if(event.getSource() == dot86) {
          dot86.setStyle("-fx-background-color: black;");
          flag86 =true;
          if(flag84== true && player == true){
-            lbl85.setStyle("-fx-background-color: blue;");
-            dot86.setStyle("-fx-background-color: grey;");
-            dot84.setStyle("-fx-background-color: grey;");
+            lineChange(lbl85, dot86, dot84, player);
             flag86 = false;
             flag84 = false;
-            player= false;
          }else if(flag84 == true && player == false) {
-            lbl85.setStyle("-fx-background-color: blue;");
-            dot86.setStyle("-fx-background-color: grey;");
-            dot84.setStyle("-fx-background-color: grey;");
+            lineChange(lbl85, dot86, dot84, player);
             flag86 = false;
             flag84 = false;
-            player= true;
          }else if(flag88== true && player == true){
-            lbl87.setStyle("-fx-background-color: blue;");
-            dot86.setStyle("-fx-background-color: grey;");
-            dot88.setStyle("-fx-background-color: grey;");
+            lineChange(lbl87, dot86, dot88, player);
             flag86 = false;
             flag88 = false;
-            player= false;
          }else if(flag88 == true && player == false) {
-            lbl87.setStyle("-fx-background-color: blue;");
-            dot86.setStyle("-fx-background-color: grey;");
-            dot88.setStyle("-fx-background-color: grey;");
+            lineChange(lbl87, dot86, dot88, player);
             flag86 = false;
             flag88 = false;
-            player= true;
          }else if(flag66== true && player == true){
-            lbl76.setStyle("-fx-background-color: blue;");
-            dot86.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl76, dot86, dot66, player);
             flag86 = false;
             flag66 = false;
-            player= false;
          }else if(flag66 == true && player == false) {
-            lbl76.setStyle("-fx-background-color: blue;");
-            dot86.setStyle("-fx-background-color: grey;");
-            dot66.setStyle("-fx-background-color: grey;");
+            lineChange(lbl76, dot86, dot66, player);
             flag86 = false;
             flag66 = false;
-            player= true;
          }
       }else if(event.getSource() == dot88) {
          dot88.setStyle("-fx-background-color: black;");
          flag88 =true;
          if(flag86== true && player == true){
-            lbl87.setStyle("-fx-background-color: blue;");
-            dot88.setStyle("-fx-background-color: grey;");
-            dot86.setStyle("-fx-background-color: grey;");
+            lineChange(lbl87, dot88, dot86, player);
             flag88 = false;
             flag86 = false;
-            player= false;
          }else if(flag86 == true && player == false) {
-            lbl87.setStyle("-fx-background-color: blue;");
-            dot88.setStyle("-fx-background-color: grey;");
-            dot86.setStyle("-fx-background-color: grey;");
+            lineChange(lbl87, dot88, dot86, player);
             flag88 = false;
             flag86 = false;
-            player= true;
          }else if(flag68== true && player == true){
-            lbl78.setStyle("-fx-background-color: blue;");
-            dot88.setStyle("-fx-background-color: grey;");
-            dot68.setStyle("-fx-background-color: grey;");
+            lineChange(lbl78, dot88, dot68, player);
             flag88 = false;
             flag68 = false;
-            player= false;
          }else if(flag68 == true && player == false) {
-            lbl78.setStyle("-fx-background-color: blue;");
-            dot88.setStyle("-fx-background-color: grey;");
-            dot68.setStyle("-fx-background-color: grey;");
+            lineChange(lbl78, dot88, dot68, player);
             flag88 = false;
             flag68 = false;
-            player= true;
          }
       }
 
@@ -1569,9 +1104,21 @@ public class DotsAndBoxesController {
    }
 
    private void initializeButton(Button btn) {
+      btn.setStyle("-fx-background-color: grey;");
       btn.setMinWidth(25);
       btn.setMinHeight(25);
       btn.setMaxWidth(25);
       btn.setMaxHeight(25);
+   }
+
+   private void Player1Turn() {
+      lblPlayerOne.setStyle("-fx-background-color: yellow;");
+      lblPlayerTwo.setStyle("-fx-background-color: transparent;");
+
+   }
+
+   private void Player2Turn() {
+      lblPlayerTwo.setStyle("-fx-background-color: yellow;");
+      lblPlayerOne.setStyle("-fx-background-color: transparent;");
    }
 }
