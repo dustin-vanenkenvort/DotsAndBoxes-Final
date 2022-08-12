@@ -241,41 +241,47 @@ public class DotsAndBoxesController {
    private int [][] gameBoard = new int [9][9];
    private int total = 0;
    private void addButtons(){
-      total=0;
-      for(int i= 1; i<10; i=i+2){
-         for(int k= 1; k<10; k=k+2) {
+      for(int i= 0; i<9; i=i+2){
+         for(int k= 0; k<9; k=k+2) {
             total += gameBoard[i][k];
          }
       }
-      lblPlayerTwoScore.setText(String.format(String.valueOf(total)));
+      if(total > 3){
+         lblPlayerTwoScore.setText(String.format(String.valueOf(total)));
+         lblPlayerTwoScore.setStyle("-fx-background-color: yellow;");
+      }
    }
    private void buttonCheck(){
       addButtons();
-      if(total>1){
-         flag00= false;
-         flag02= false;
-         flag04= false;
-         flag06= false;
-         flag08= false;
-         flag20= false;
-         flag24= false;
-         flag26= false;
-         flag28= false;
-         flag40= false;
-         flag42= false;
-         flag44= false;
-         flag46= false;
-         flag48= false;
-         flag60= false;
-         flag62= false;
-         flag64= false;
-         flag66= false;
-         flag68= false;
-         flag80= false;
-         flag82= false;
-         flag84= false;
-         flag86= false;
-         flag88= false;
+      if(total>3){
+         total = 0;
+         lblPlayerTwoScore.setText(String.format(String.valueOf(total)));
+         flag00= false; dot00.setStyle("-fx-background-color: grey;"); gameBoard[0][0]=0;
+         flag02= false; dot02.setStyle("-fx-background-color: grey;"); gameBoard[0][2]=0;
+         flag04= false; dot04.setStyle("-fx-background-color: grey;"); gameBoard[0][4]=0;
+         flag06= false; dot06.setStyle("-fx-background-color: grey;"); gameBoard[0][6]=0;
+         flag08= false; dot08.setStyle("-fx-background-color: grey;"); gameBoard[0][8]=0;
+         flag20= false; dot20.setStyle("-fx-background-color: grey;"); gameBoard[2][0]=0;
+         flag22= false; dot22.setStyle("-fx-background-color: grey;"); gameBoard[2][2]=0;
+         flag24= false; dot24.setStyle("-fx-background-color: grey;"); gameBoard[2][4]=0;
+         flag26= false; dot26.setStyle("-fx-background-color: grey;"); gameBoard[2][6]=0;
+         flag28= false; dot28.setStyle("-fx-background-color: grey;"); gameBoard[2][8]=0;
+         flag40= false; dot40.setStyle("-fx-background-color: grey;"); gameBoard[4][0]=0;
+         flag42= false; dot42.setStyle("-fx-background-color: grey;"); gameBoard[4][2]=0;
+         flag44= false; dot44.setStyle("-fx-background-color: grey;"); gameBoard[4][4]=0;
+         flag46= false; dot46.setStyle("-fx-background-color: grey;"); gameBoard[4][6]=0;
+         flag48= false; dot48.setStyle("-fx-background-color: grey;"); gameBoard[4][8]=0;
+         flag60= false; dot60.setStyle("-fx-background-color: grey;"); gameBoard[6][0]=0;
+         flag62= false; dot62.setStyle("-fx-background-color: grey;"); gameBoard[6][2]=0;
+         flag64= false; dot64.setStyle("-fx-background-color: grey;"); gameBoard[6][4]=0;
+         flag66= false; dot66.setStyle("-fx-background-color: grey;"); gameBoard[6][6]=0;
+         flag68= false; dot68.setStyle("-fx-background-color: grey;"); gameBoard[6][8]=0;
+         flag80= false; dot80.setStyle("-fx-background-color: grey;"); gameBoard[8][0]=0;
+         flag82= false; dot82.setStyle("-fx-background-color: grey;"); gameBoard[8][2]=0;
+         flag84= false; dot84.setStyle("-fx-background-color: grey;"); gameBoard[8][4]=0;
+         flag86= false; dot86.setStyle("-fx-background-color: grey;"); gameBoard[8][6]=0;
+         flag88= false; dot88.setStyle("-fx-background-color: grey;"); gameBoard[8][8]=0;
+         lblPlayerTwoScore.setStyle("-fx-background-color: transparent;");
       }
    }
    private void lineChange(Label lbl, Button btn, Button btn2, Boolean player) {
@@ -303,6 +309,7 @@ public class DotsAndBoxesController {
          dot00.setStyle("-fx-background-color: black;");
          flag00 =true;
          gameBoard[0][0]=1;
+         buttonCheck();
          if(flag20 == true && player == true){
             lineChange(lbl10, dot00, dot20, player);
             flag00 = false;
@@ -328,6 +335,7 @@ public class DotsAndBoxesController {
          dot02.setStyle("-fx-background-color: black;");
          flag02 =true;
          gameBoard[0][2]=1;
+         buttonCheck();
          if(flag00 == true && player == true){
             lineChange(lbl01, dot02, dot00, player);
             flag02 = false;
@@ -363,6 +371,7 @@ public class DotsAndBoxesController {
          dot04.setStyle("-fx-background-color: black;");
          flag04 =true;
          gameBoard[0][4]=1;
+         buttonCheck();
          if(flag02 == true && player == true){
             lineChange(lbl03, dot04, dot02, player);
             flag04 = false;
@@ -398,6 +407,7 @@ public class DotsAndBoxesController {
          dot06.setStyle("-fx-background-color: black;");
          flag06 =true;
          gameBoard[0][6]=1;
+         buttonCheck();
          if(flag04 == true && player == true){
             lineChange(lbl05, dot06, dot04, player);
             flag06 = false;
@@ -433,6 +443,7 @@ public class DotsAndBoxesController {
          dot08.setStyle("-fx-background-color: black;");
          flag08 =true;
          gameBoard[0][8]=1;
+         buttonCheck();
          if(flag06 == true && player == true){
             lineChange(lbl07, dot08, dot06, player);
             flag08 = false;
@@ -458,6 +469,7 @@ public class DotsAndBoxesController {
          dot20.setStyle("-fx-background-color: black;");
          flag20 =true;
          gameBoard[2][0]=1;
+         buttonCheck();
          if(flag00 == true && player == true){
             lineChange(lbl10, dot20, dot00, player);
             flag20 = false;
@@ -493,6 +505,7 @@ public class DotsAndBoxesController {
          dot22.setStyle("-fx-background-color: black;");
          flag22 =true;
          gameBoard[2][2]=1;
+         buttonCheck();
          if(flag20 == true && player == true){
             lineChange(lbl21, dot22, dot20, player);
             flag22 = false;
@@ -538,6 +551,7 @@ public class DotsAndBoxesController {
          dot24.setStyle("-fx-background-color: black;");
          flag24 =true;
          gameBoard[2][4]=1;
+         buttonCheck();
          if(flag22 == true && player == true){
             lineChange(lbl23, dot24, dot22, player);
             flag24 = false;
@@ -583,6 +597,7 @@ public class DotsAndBoxesController {
          dot26.setStyle("-fx-background-color: black;");
          flag26 =true;
          gameBoard[2][6]=1;
+         buttonCheck();
          if(flag24 == true && player == true){
             lineChange(lbl25, dot26, dot24, player);
             flag26 = false;
@@ -628,6 +643,7 @@ public class DotsAndBoxesController {
          dot28.setStyle("-fx-background-color: black;");
          flag28 =true;
          gameBoard[2][8]=1;
+         buttonCheck();
          if(flag26 == true && player == true){
             lineChange(lbl27, dot28, dot26, player);
             flag28 = false;
@@ -663,6 +679,7 @@ public class DotsAndBoxesController {
          dot40.setStyle("-fx-background-color: black;");
          flag40 =true;
          gameBoard[4][0]=1;
+         buttonCheck();
          if(flag60 == true && player == true){
             lineChange(lbl50, dot40, dot60, player);
             flag40 = false;
@@ -698,6 +715,7 @@ public class DotsAndBoxesController {
          dot42.setStyle("-fx-background-color: black;");
          flag42 =true;
          gameBoard[4][2]=1;
+         buttonCheck();
          if(flag40== true && player == true){
             lineChange(lbl41, dot42, dot40, player);
             flag42 = false;
@@ -743,6 +761,7 @@ public class DotsAndBoxesController {
          dot44.setStyle("-fx-background-color: black;");
          flag44 =true;
          gameBoard[4][4]=1;
+         buttonCheck();
          if(flag42== true && player == true){
             lineChange(lbl43, dot44, dot42, player);
             flag44 = false;
@@ -788,6 +807,7 @@ public class DotsAndBoxesController {
          dot46.setStyle("-fx-background-color: black;");
          flag46 =true;
          gameBoard[4][6]=1;
+         buttonCheck();
          if(flag44== true && player == true){
             lineChange(lbl45, dot44, dot44, player);
             flag46 = false;
@@ -833,6 +853,7 @@ public class DotsAndBoxesController {
          dot48.setStyle("-fx-background-color: black;");
          flag48 =true;
          gameBoard[4][8]=1;
+         buttonCheck();
          if(flag46== true && player == true){
             lineChange(lbl47, dot48, dot46, player);
             flag48 = false;
@@ -868,6 +889,7 @@ public class DotsAndBoxesController {
          dot60.setStyle("-fx-background-color: black;");
          flag60 =true;
          gameBoard[6][0]=1;
+         buttonCheck();
          if(flag80== true && player == true){
             lineChange(lbl70, dot60, dot80, player);
             flag60 = false;
@@ -903,6 +925,7 @@ public class DotsAndBoxesController {
          dot62.setStyle("-fx-background-color: black;");
          flag62 =true;
          gameBoard[6][2]=1;
+         buttonCheck();
          if(flag60== true && player == true){
             lineChange(lbl61, dot62, dot60, player);
             flag62 = false;
@@ -948,6 +971,7 @@ public class DotsAndBoxesController {
          dot64.setStyle("-fx-background-color: black;");
          flag64 =true;
          gameBoard[6][4]=1;
+         buttonCheck();
          if(flag62== true && player == true){
             lineChange(lbl63, dot64, dot62, player);
             flag64 = false;
@@ -993,6 +1017,7 @@ public class DotsAndBoxesController {
          dot66.setStyle("-fx-background-color: black;");
          flag66 =true;
          gameBoard[6][6]=1;
+         buttonCheck();
          if(flag64== true && player == true){
             lineChange(lbl65, dot66, dot64, player);
             flag66 = false;
@@ -1038,6 +1063,7 @@ public class DotsAndBoxesController {
          dot68.setStyle("-fx-background-color: black;");
          flag68 =true;
          gameBoard[6][8]=1;
+         buttonCheck();
          if(flag66== true && player == true){
             lineChange(lbl67, dot68, dot66, player);
             flag68 = false;
@@ -1073,6 +1099,7 @@ public class DotsAndBoxesController {
          dot80.setStyle("-fx-background-color: black;");
          flag80 =true;
          gameBoard[8][0]=1;
+         buttonCheck();
          if(flag82== true && player == true){
             lineChange(lbl81, dot80, dot82, player);
             flag80 = false;
@@ -1098,6 +1125,7 @@ public class DotsAndBoxesController {
          dot82.setStyle("-fx-background-color: black;");
          flag82 =true;
          gameBoard[8][2]=1;
+         buttonCheck();
          if(flag80== true && player == true){
             lineChange(lbl81, dot82, dot80, player);
             flag82 = false;
@@ -1133,6 +1161,7 @@ public class DotsAndBoxesController {
          dot84.setStyle("-fx-background-color: black;");
          flag84 =true;
          gameBoard[8][4]=1;
+         buttonCheck();
          if(flag82== true && player == true){
             lineChange(lbl83, dot84, dot82, player);
             flag84 = false;
@@ -1168,6 +1197,7 @@ public class DotsAndBoxesController {
          dot86.setStyle("-fx-background-color: black;");
          flag86 =true;
          gameBoard[8][6]=1;
+         buttonCheck();
          if(flag84== true && player == true){
             lineChange(lbl85, dot86, dot84, player);
             flag86 = false;
@@ -1203,6 +1233,7 @@ public class DotsAndBoxesController {
          dot88.setStyle("-fx-background-color: black;");
          flag88 =true;
          gameBoard[8][8]=1;
+         buttonCheck();
          if(flag86== true && player == true){
             lineChange(lbl87, dot88, dot86, player);
             flag88 = false;
