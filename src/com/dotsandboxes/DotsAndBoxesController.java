@@ -9,11 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.lang.reflect.Array;
-
-
 public class DotsAndBoxesController {
 
    // GUI controls defined in FXML and used by the controller's code
@@ -238,24 +233,24 @@ public class DotsAndBoxesController {
 
    private boolean player = true; //true = player 1 turn
 
+   private int boxes[] = new int [16];
+   private int playerOneScore= 0;
+   private int playerTwoScore= 0;
    private int [][] gameBoard = new int [9][9]; //eventually move all this to game class
    private int total = 0;
+
    private void addButtons(){
       for(int i= 0; i<9; i=i+2){
          for(int k= 0; k<9; k=k+2) {
             this.total += gameBoard[i][k];
          }
       }
-      if(this.total > 3){
-         lblPlayerTwoScore.setText(String.format(String.valueOf(this.total)));//test to see if total was working. delete after double click bug is fixed
-         lblPlayerTwoScore.setStyle("-fx-background-color: yellow;");
-      }
    }
+
    private void buttonCheck(){
       addButtons();
       if(this.total>3){
          this.total = 0;
-         lblPlayerTwoScore.setText(String.format(String.valueOf(total)));
          flag00= false; dot00.setStyle("-fx-background-color: grey;"); gameBoard[0][0]=0;
          flag02= false; dot02.setStyle("-fx-background-color: grey;"); gameBoard[0][2]=0;
          flag04= false; dot04.setStyle("-fx-background-color: grey;"); gameBoard[0][4]=0;
@@ -281,174 +276,86 @@ public class DotsAndBoxesController {
          flag84= false; dot84.setStyle("-fx-background-color: grey;"); gameBoard[8][4]=0;
          flag86= false; dot86.setStyle("-fx-background-color: grey;"); gameBoard[8][6]=0;
          flag88= false; dot88.setStyle("-fx-background-color: grey;"); gameBoard[8][8]=0;
-         lblPlayerTwoScore.setStyle("-fx-background-color: transparent;");//test to see if total was working. delete after double click bug is fixed
       }
    }
-   private int boxes[] = new int [16];
-   private int playerOneScore= 0;
-   private int playerTwoScore= 0;
+
+   private void addPoint(Boolean player){
+      if(player){
+         playerOneScore+=1;
+         lblPlayerOneScore.setText(Integer.toString(playerOneScore));
+      }else{
+         playerTwoScore+=1;
+         lblPlayerTwoScore.setText(Integer.toString(playerTwoScore));
+      }
+   }
+
    private void scoring(){
       if(gameBoard[0][1]+ gameBoard[2][1]+ gameBoard[1][2]+ gameBoard[1][0] == 4 && boxes[0] == 0){
          boxes[0] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[0][3]+ gameBoard[1][4]+ gameBoard[2][3]+ gameBoard[1][2] == 4 && boxes[1] == 0){
          boxes[1] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[0][5]+ gameBoard[1][6]+ gameBoard[2][5]+ gameBoard[1][4] == 4 && boxes[2] == 0){
          boxes[2] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[0][7]+ gameBoard[1][8]+ gameBoard[2][5]+ gameBoard[1][4] == 4 && boxes[3] == 0){
          boxes[3] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[2][1]+ gameBoard[3][2]+ gameBoard[4][1]+ gameBoard[3][0] == 4 && boxes[4] == 0){
          boxes[4] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[2][3]+ gameBoard[3][4]+ gameBoard[4][3]+ gameBoard[3][2] == 4 && boxes[5] == 0){
          boxes[5] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[2][5]+ gameBoard[3][6]+ gameBoard[4][5]+ gameBoard[3][4] == 4 && boxes[6] == 0){
          boxes[6] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[2][7]+ gameBoard[3][8]+ gameBoard[4][7]+ gameBoard[3][6] == 4 && boxes[7] == 0){
          boxes[7] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[4][1]+ gameBoard[5][2]+ gameBoard[6][1]+ gameBoard[5][0] == 4 && boxes[8] == 0){
          boxes[8] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[4][3]+ gameBoard[5][4]+ gameBoard[6][3]+ gameBoard[5][2] == 4 && boxes[9] == 0){
          boxes[9] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[4][5]+ gameBoard[5][6]+ gameBoard[6][5]+ gameBoard[5][4] == 4 && boxes[10] == 0){
          boxes[10] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[4][7]+ gameBoard[5][8]+ gameBoard[6][7]+ gameBoard[5][6] == 4 && boxes[11] == 0){
          boxes[11] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[6][1]+ gameBoard[7][2]+ gameBoard[8][1]+ gameBoard[7][0] == 4 && boxes[12] == 0){
          boxes[12] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[6][3]+ gameBoard[7][4]+ gameBoard[8][3]+ gameBoard[7][2] == 4 && boxes[13] == 0){
          boxes[13] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[6][5]+ gameBoard[7][6]+ gameBoard[8][5]+ gameBoard[7][4] == 4 && boxes[14] == 0){
          boxes[14] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
       if(gameBoard[6][7]+ gameBoard[7][8]+ gameBoard[8][7]+ gameBoard[7][6] == 4 && boxes[15] == 0){
          boxes[15] = 1;
-         if(player == true){
-            this.playerOneScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerOneScore)));
-         }else{
-            this.playerTwoScore+=1;
-            lblPlayerOneScore.setText(String.format(String.valueOf(this.playerTwoScore)));
-         }
+         addPoint(player);
       }
    }
+
    private void lineChange(Label lbl, Button btn, Button btn2, Boolean player) {
       if (player)
       {
@@ -465,9 +372,6 @@ public class DotsAndBoxesController {
       this.player = !player;
    }
 
-   //   private void mousePressed(MouseEvent ev) {
-//      dot02.setStyle("-fx-background-color: black;");
-//   }
    @FXML
    private void dotClicked(ActionEvent event) {
       if(event.getSource() == dot00) {
@@ -480,24 +384,28 @@ public class DotsAndBoxesController {
             flag00 = false;
             flag20 = false;
             gameBoard[0][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag20 == true && player == false && gameBoard[0][1] == 0) {
             lineChange(lbl10, dot00, dot20, player);
-            Player2Turn();
             flag00 = false;
             flag20 = false;
             gameBoard[0][1]= 1;
+            scoring();
+            Player2Turn();
          }else if(flag02 == true && player == true && gameBoard[1][0] == 0){
             lineChange(lbl01, dot00, dot02, player);
             flag00 = false;
             flag02 = false;
             gameBoard[1][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag02 == true && player == false && gameBoard[1][0] == 0){
             lineChange(lbl01, dot00, dot02, player);
             flag00 = false;
             flag02 = false;
             gameBoard[1][0]= 1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot02) {
@@ -510,36 +418,42 @@ public class DotsAndBoxesController {
             flag02 = false;
             flag00 = false;
             gameBoard[1][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag00 == true && player == false && gameBoard[1][0] == 0) {
             lineChange(lbl01, dot02, dot00, player);
             flag02 = false;
             flag00 = false;
             gameBoard[1][0]= 1;
+            scoring();
             Player2Turn();
          }else if(flag22 == true && player == true && gameBoard[2][1] == 0){
             lineChange(lbl12, dot02, dot22, player);
             flag02 = false;
             flag22 = false;
             gameBoard[2][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag22 == true && player == false && gameBoard[2][1] == 0){
             lineChange(lbl12, dot02, dot22, player);
             flag02 = false;
             flag22 = false;
             gameBoard[2][1]= 1;
+            scoring();
             Player2Turn();
          }else if(flag04 == true && player == true && gameBoard[0][1] == 0){
             lineChange(lbl10, dot00, dot20, player);
             flag02 = false;
             flag04 = false;
             gameBoard[0][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag04 == true && player == false && gameBoard[0][1] == 0){
             lineChange(lbl10, dot00, dot20, player);
             flag02 = false;
             flag04 = false;
             gameBoard[0][1]= 1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot04) {
@@ -552,36 +466,42 @@ public class DotsAndBoxesController {
             flag04 = false;
             flag02 = false;
             gameBoard[3][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag02 == true && player == false && gameBoard[3][0] == 0) {
             lineChange(lbl03, dot04, dot02, player);
             flag04 = false;
             flag02 = false;
             gameBoard[3][0]= 1;
+            scoring();
             Player2Turn();
          }else if(flag24 == true && player == true && gameBoard[4][1] == 0){
             lineChange(lbl14, dot04, dot24, player);
             flag04 = false;
             flag24 = false;
             gameBoard[4][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag24 == true && player == false && gameBoard[4][1] == 0){
             lineChange(lbl14, dot04, dot24, player);
             flag04 = false;
             flag24 = false;
             gameBoard[4][1]= 1;
+            scoring();
             Player2Turn();
          }else if(flag06 == true && player == true && gameBoard[5][0] == 0){
             lineChange(lbl05, dot04, dot22, player);
             flag04 = false;
             flag06 = false;
             gameBoard[5][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag06 == true && player == false && gameBoard[5][0] == 0){
             lineChange(lbl05, dot04, dot22, player);
             flag04 = false;
             flag06 = false;
             gameBoard[5][0]= 1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot06) {
@@ -594,36 +514,42 @@ public class DotsAndBoxesController {
             flag06 = false;
             flag04 = false;
             gameBoard[5][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag04 == true && player == false && gameBoard[5][0] == 0) {
             lineChange(lbl05, dot06, dot04, player);
             flag06 = false;
             flag04 = false;
             gameBoard[5][0]= 1;
+            scoring();
             Player2Turn();
          }else if(flag26 == true && player == true && gameBoard[6][1] == 0){
             lineChange(lbl16, dot06, dot26, player);
             flag06 = false;
             flag26 = false;
             gameBoard[6][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag26 == true && player == false && gameBoard[6][1] == 0) {
             lineChange(lbl16, dot06, dot26, player);
             flag06 = false;
             flag26 = false;
             gameBoard[6][1]= 1;
+            scoring();
             Player2Turn();
          }else if(flag08 == true && player == true && gameBoard[7][0] == 0){
             lineChange(lbl07, dot06, dot08, player);
             flag06 = false;
             flag08 = false;
             gameBoard[7][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag08 == true && player == false && gameBoard[7][0] == 0) {
             lineChange(lbl07, dot06, dot08, player);
             flag06 = false;
             flag08 = false;
             gameBoard[7][0]= 1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot08) {
@@ -636,24 +562,28 @@ public class DotsAndBoxesController {
             flag08 = false;
             flag06 = false;
             gameBoard[7][0]= 1;
+            scoring();
             Player1Turn();
          }else if(flag06 == true && player == false && gameBoard[7][0] == 0) {
             lineChange(lbl07, dot08, dot06, player);
             flag08 = false;
             flag06 = false;
             gameBoard[7][0]= 1;
+            scoring();
             Player2Turn();
          }else if(flag28 == true && player == true && gameBoard[8][1] == 0){
             lineChange(lbl18, dot08, dot28, player);
             flag08 = false;
             flag28 = false;
             gameBoard[8][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag28 == true && player == false && gameBoard[8][1] == 0) {
             lineChange(lbl18, dot08, dot28, player);
             flag08 = false;
             flag28 = false;
             gameBoard[8][1]= 1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot20) {
@@ -666,36 +596,42 @@ public class DotsAndBoxesController {
             flag20 = false;
             flag00 = false;
             gameBoard[0][1]= 1;
+            scoring();
             Player1Turn();
          }else if(flag00 == true && player == false && gameBoard[0][1] == 0) {
             lineChange(lbl10, dot20, dot00, player);
             flag20 = false;
             flag00 = false;
             gameBoard[0][1]= 1;
+            scoring();
             Player2Turn();
          }else if(flag22 == true && player == true && gameBoard[1][2] == 0){
             lineChange(lbl21, dot20, dot22, player);
             flag20 = false;
             flag22 = false;
             gameBoard[1][2]= 1;
+            scoring();
             Player1Turn();
          }else if(flag22 == true && player == false && gameBoard[1][2] == 0) {
             lineChange(lbl21, dot20, dot22, player);
             flag20 = false;
             flag22 = false;
             gameBoard[1][2]= 1;
+            scoring();
             Player2Turn();
          }else if(flag40 == true && player == true && gameBoard[0][3] == 0){
             lineChange(lbl30, dot20, dot40, player);
             flag20 = false;
             flag40 = false;
             gameBoard[0][3]= 1;
+            scoring();
             Player1Turn();
          }else if(flag40 == true && player == false && gameBoard[0][3] == 0) {
             lineChange(lbl30, dot20, dot40, player);
             flag20 = false;
             flag40 = false;
             gameBoard[0][3]= 1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot22) {
@@ -708,48 +644,56 @@ public class DotsAndBoxesController {
             flag22 = false;
             flag20 = false;
             gameBoard[1][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag20 == true && player == false && gameBoard[1][2] == 0) {
             lineChange(lbl21, dot22, dot20, player);
             flag22 = false;
             flag20 = false;
             gameBoard[1][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag42 == true && player == true && gameBoard[2][3] == 0){
             lineChange(lbl32, dot22, dot42, player);
             flag22 = false;
             flag42 = false;
             gameBoard[2][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag42 == true && player == false && gameBoard[2][3] == 0) {
             lineChange(lbl32, dot22, dot42, player);
             flag22 = false;
             flag42 = false;
             gameBoard[2][3]=1;
+            scoring();
             Player2Turn();
          }else if(flag24 == true && player == true && gameBoard[3][2] == 0){
             lineChange(lbl23, dot22, dot24, player);
             flag22 = false;
             flag24 = false;
             gameBoard[3][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag24 == true && player == false && gameBoard[3][2] == 0) {
             lineChange(lbl23, dot22, dot24, player);
             flag22 = false;
             flag24 = false;
             gameBoard[3][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag02 == true && player == true && gameBoard[2][1] == 0){
             lineChange(lbl12, dot22, dot02, player);
             flag22 = false;
             flag02 = false;
             gameBoard[2][1]=1;
+            scoring();
             Player1Turn();
          }else if(flag02 == true && player == false && gameBoard[2][1] == 0) {
             lineChange(lbl12, dot22, dot02, player);
             flag22 = false;
             flag02 = false;
             gameBoard[2][1]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot24) {
@@ -762,48 +706,56 @@ public class DotsAndBoxesController {
             flag24 = false;
             flag22 = false;
             gameBoard[3][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag22 == true && player == false && gameBoard[3][2] == 0) {
             lineChange(lbl23, dot24, dot22, player);
             flag24 = false;
             flag22 = false;
             gameBoard[3][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag44 == true && player == true && gameBoard[4][3] == 0){
             lineChange(lbl34, dot24, dot44, player);
             flag24 = false;
             flag44 = false;
             gameBoard[4][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag44 == true && player == false && gameBoard[4][3] == 0) {
             lineChange(lbl34, dot24, dot44, player);
             flag24 = false;
             flag44 = false;
             gameBoard[4][3]=1;
+            scoring();
             Player2Turn();
          }else if(flag26 == true && player == true && gameBoard[5][2] == 0){
             lineChange(lbl25, dot24, dot26, player);
             flag24 = false;
             flag26 = false;
             gameBoard[5][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag26 == true && player == false && gameBoard[5][2] == 0) {
             lineChange(lbl25, dot24, dot26, player);
             flag24 = false;
             flag26 = false;
             gameBoard[5][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag04 == true && player == true && gameBoard[4][1] == 0){
             lineChange(lbl14, dot24, dot04, player);
             flag24 = false;
             flag04 = false;
             gameBoard[4][1]=1;
+            scoring();
             Player1Turn();
          }else if(flag04 == true && player == false && gameBoard[4][1] == 0) {
             lineChange(lbl14, dot24, dot04, player);
             flag24 = false;
             flag04 = false;
             gameBoard[4][1]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot26) {
@@ -816,48 +768,56 @@ public class DotsAndBoxesController {
             flag26 = false;
             flag24 = false;
             gameBoard[5][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag24 == true && player == false && gameBoard[5][2] == 0) {
             lineChange(lbl25, dot26, dot24, player);
             flag26 = false;
             flag24 = false;
             gameBoard[5][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag46 == true && player == true && gameBoard[6][3] == 0){
             lineChange(lbl36, dot26, dot46, player);
             flag26 = false;
             flag46 = false;
             gameBoard[6][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag46 == true && player == false && gameBoard[6][3] == 0) {
             lineChange(lbl36, dot26, dot46, player);
             flag26 = false;
             flag46 = false;
             gameBoard[6][3]=1;
+            scoring();
             Player2Turn();
          }else if(flag28 == true && player == true && gameBoard[7][2] == 0){
             lineChange(lbl27, dot26, dot28, player);
             flag26 = false;
             flag28 = false;
             gameBoard[7][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag28 == true && player == false && gameBoard[7][2] == 0) {
             lineChange(lbl27, dot26, dot28, player);
             flag26 = false;
             flag28 = false;
             gameBoard[7][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag06 == true && player == true && gameBoard[6][1] == 0){
             lineChange(lbl16, dot26, dot06, player);
             flag26 = false;
             flag06 = false;
             gameBoard[6][1]=1;
+            scoring();
             Player1Turn();
          }else if(flag06 == true && player == false && gameBoard[6][1] == 0) {
             lineChange(lbl16, dot26, dot06, player);
             flag26 = false;
             flag06 = false;
             gameBoard[6][1]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot28) {
@@ -870,36 +830,42 @@ public class DotsAndBoxesController {
             flag28 = false;
             flag26 = false;
             gameBoard[7][2]=1;
+            scoring();
             Player1Turn();
          }else if(flag26 == true && player == false && gameBoard[7][2] == 0) {
             lineChange(lbl27, dot28, dot26, player);
             flag28 = false;
             flag26 = false;
             gameBoard[7][2]=1;
+            scoring();
             Player2Turn();
          }else if(flag48 == true && player == true && gameBoard[8][3] == 0){
             lineChange(lbl38, dot28, dot48, player);
             flag28 = false;
             flag48 = false;
             gameBoard[8][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag48 == true && player == false && gameBoard[8][3] == 0) {
             lineChange(lbl38, dot28, dot48, player);
             flag28 = false;
             flag48 = false;
             gameBoard[8][3]=1;
+            scoring();
             Player2Turn();
          }else if(flag08 == true && player == true && gameBoard[8][1] == 0){
             lineChange(lbl18, dot28, dot08, player);
             flag28 = false;
             flag08 = false;
             gameBoard[8][1]=1;
+            scoring();
             Player1Turn();
          }else if(flag08 == true && player == false && gameBoard[8][1] == 0) {
             lineChange(lbl18, dot28, dot08, player);
             flag28 = false;
             flag08 = false;
             gameBoard[8][1]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot40) {
@@ -912,36 +878,42 @@ public class DotsAndBoxesController {
             flag40 = false;
             flag60 = false;
             gameBoard[0][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag60 == true && player == false && gameBoard[0][5] == 0) {
             lineChange(lbl50, dot40, dot60, player);
             flag40 = false;
             flag60 = false;
             gameBoard[0][5]=1;
+            scoring();
             Player2Turn();
          }else if(flag42 == true && player == true && gameBoard[1][4] == 0){
             lineChange(lbl41, dot40, dot42, player);
             flag40 = false;
             flag42 = false;
             gameBoard[1][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag42 == true && player == false && gameBoard[1][4] == 0) {
             lineChange(lbl41, dot40, dot42, player);
             flag40 = false;
             flag42 = false;
             gameBoard[1][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag20 == true && player == true && gameBoard[0][3] == 0){
             lineChange(lbl30, dot40, dot20, player);
             flag40 = false;
             flag20 = false;
             gameBoard[0][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag20 == true && player == false && gameBoard[0][3] == 0) {
             lineChange(lbl30, dot40, dot20, player);
             flag40 = false;
             flag20 = false;
             gameBoard[0][3]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot42) {
@@ -954,48 +926,56 @@ public class DotsAndBoxesController {
             flag42 = false;
             flag40 = false;
             gameBoard[1][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag40 == true && player == false && gameBoard[1][4] == 0) {
             lineChange(lbl41, dot42, dot40, player);
             flag42 = false;
             flag40 = false;
             gameBoard[1][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag62== true && player == true && gameBoard[2][5] == 0){
             lineChange(lbl52, dot42, dot62, player);
             flag42 = false;
             flag62 = false;
             gameBoard[2][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag62 == true && player == false && gameBoard[2][5] == 0) {
             lineChange(lbl52, dot42, dot62, player);
             flag42 = false;
             flag62 = false;
             gameBoard[2][5]=1;
+            scoring();
             Player2Turn();
          }else if(flag44== true && player == true && gameBoard[3][4] == 0){
             lineChange(lbl43, dot42, dot44, player);
             flag42 = false;
             flag44 = false;
             gameBoard[3][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag44 == true && player == false && gameBoard[3][4] == 0) {
             lineChange(lbl43, dot42, dot44, player);
             flag42 = false;
             flag44 = false;
             gameBoard[3][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag22== true && player == true && gameBoard[2][3] == 0){
             lineChange(lbl32, dot42, dot22, player);
             flag42 = false;
             flag22 = false;
             gameBoard[2][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag22 == true && player == false && gameBoard[2][3] == 0) {
             lineChange(lbl32, dot42, dot22, player);
             flag42 = false;
             flag22 = false;
             gameBoard[2][3]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot44) {
@@ -1008,48 +988,56 @@ public class DotsAndBoxesController {
             flag44 = false;
             flag42 = false;
             gameBoard[3][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag42 == true && player == false && gameBoard[3][4] == 0) {
             lineChange(lbl43, dot44, dot42, player);
             flag44 = false;
             flag42 = false;
             gameBoard[3][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag64== true && player == true && gameBoard[4][5] == 0){
             lineChange(lbl54, dot44, dot64, player);
             flag44 = false;
             flag64 = false;
             gameBoard[4][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag64 == true && player == false && gameBoard[4][5] == 0) {
             lineChange(lbl54, dot44, dot64, player);
             flag44 = false;
             flag64 = false;
             gameBoard[4][5]=1;
+            scoring();
             Player2Turn();
          }else if(flag46== true && player == true && gameBoard[5][4] == 0){
             lineChange(lbl45, dot44, dot46, player);
             flag44 = false;
             flag46 = false;
             gameBoard[5][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag46 == true && player == false && gameBoard[5][4] == 0) {
             lineChange(lbl45, dot44, dot46, player);
             flag44 = false;
             flag46 = false;
             gameBoard[5][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag24== true && player == true && gameBoard[4][3] == 0){
             lineChange(lbl34, dot44, dot24, player);
             flag44 = false;
             flag24 = false;
             gameBoard[4][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag24 == true && player == false && gameBoard[4][3] == 0) {
             lineChange(lbl34, dot44, dot24, player);
             flag44 = false;
             flag24 = false;
             gameBoard[4][3]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot46) {
@@ -1062,48 +1050,56 @@ public class DotsAndBoxesController {
             flag46 = false;
             flag44 = false;
             gameBoard[5][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag44 == true && player == false && gameBoard[5][4] == 0) {
             lineChange(lbl45, dot44, dot44, player);
             flag46 = false;
             flag44 = false;
             gameBoard[5][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag66== true && player == true && gameBoard[6][5] == 0){
             lineChange(lbl56, dot46, dot66, player);
             flag46 = false;
             flag66 = false;
             gameBoard[6][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag66 == true && player == false && gameBoard[6][5] == 0) {
             lineChange(lbl56, dot46, dot66, player);
             flag46 = false;
             flag66 = false;
             gameBoard[6][5]=1;
+            scoring();
             Player2Turn();
          }else if(flag48== true && player == true && gameBoard[7][4] == 0){
             lineChange(lbl47, dot46, dot48, player);
             flag46 = false;
             flag48 = false;
             gameBoard[7][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag48 == true && player == false && gameBoard[7][4] == 0) {
             lineChange(lbl47, dot46, dot48, player);
             flag46 = false;
             flag48 = false;
             gameBoard[7][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag26== true && player == true && gameBoard[6][3] == 0){
             lineChange(lbl36, dot46, dot26, player);
             flag46 = false;
             flag26 = false;
             gameBoard[6][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag26 == true && player == false && gameBoard[6][3] == 0) {
             lineChange(lbl36, dot46, dot26, player);
             flag46 = false;
             flag26 = false;
             gameBoard[6][3]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot48) {
@@ -1116,36 +1112,42 @@ public class DotsAndBoxesController {
             flag48 = false;
             flag46 = false;
             gameBoard[7][4]=1;
+            scoring();
             Player1Turn();
          }else if(flag46 == true && player == false && gameBoard[7][4] == 0) {
             lineChange(lbl47, dot48, dot46, player);
             flag48 = false;
             flag46 = false;
             gameBoard[7][4]=1;
+            scoring();
             Player2Turn();
          }else if(flag68== true && player == true && gameBoard[8][5] == 0) {
             lineChange(lbl58, dot48, dot68, player);
             flag48 = false;
             flag68 = false;
             gameBoard[8][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag68 == true && player == false && gameBoard[8][5] == 0) {
             lineChange(lbl58, dot48, dot68, player);
             flag48 = false;
             flag68 = false;
             gameBoard[8][5]=1;
+            scoring();
             Player2Turn();
          }else if(flag28== true && player == true && gameBoard[8][3] == 0){
             lineChange(lbl38, dot48, dot28, player);
             flag48 = false;
             flag28 = false;
             gameBoard[8][3]=1;
+            scoring();
             Player1Turn();
          }else if(flag28 == true && player == false && gameBoard[8][3] == 0) {
             lineChange(lbl38, dot48, dot28, player);
             flag48 = false;
             flag28 = false;
             gameBoard[8][3]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot60) {
@@ -1158,36 +1160,42 @@ public class DotsAndBoxesController {
             flag60 = false;
             flag80 = false;
             gameBoard[0][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag80 == true && player == false && gameBoard[0][7] == 0) {
             lineChange(lbl70, dot60, dot80, player);
             flag60 = false;
             flag80 = false;
             gameBoard[0][7]=1;
+            scoring();
             Player2Turn();
          }else if(flag62== true && player == true && gameBoard[1][6] == 0){
             lineChange(lbl61, dot60, dot62, player);
             flag60 = false;
             flag62 = false;
             gameBoard[1][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag62 == true && player == false && gameBoard[1][6] == 0) {
             lineChange(lbl61, dot60, dot62, player);
             flag60 = false;
             flag62 = false;
             gameBoard[1][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag40== true && player == true && gameBoard[0][5] == 0){
             lineChange(lbl50, dot60, dot40, player);
             flag60 = false;
             flag40 = false;
             gameBoard[0][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag40 == true && player == false && gameBoard[0][5] == 0) {
             lineChange(lbl50, dot60, dot40, player);
             flag60 = false;
             flag40 = false;
             gameBoard[0][5]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot62) {
@@ -1200,48 +1208,56 @@ public class DotsAndBoxesController {
             flag62 = false;
             flag60 = false;
             gameBoard[1][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag60 == true && player == false && gameBoard[1][6] == 0) {
             lineChange(lbl61, dot62, dot60, player);
             flag62 = false;
             flag60 = false;
             gameBoard[1][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag82== true && player == true && gameBoard[2][7] == 0){
             lineChange(lbl72, dot62, dot82, player);
             flag62 = false;
             flag82 = false;
             gameBoard[2][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag82 == true && player == false && gameBoard[2][7] == 0) {
             lineChange(lbl72, dot62, dot82, player);
             flag62 = false;
             flag82 = false;
             gameBoard[2][7]=1;
+            scoring();
             Player2Turn();
          }else if(flag64== true && player == true && gameBoard[3][6] == 0){
             lineChange(lbl63, dot62, dot64, player);
             flag62 = false;
             flag64 = false;
             gameBoard[3][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag64 == true && player == false && gameBoard[3][6] == 0) {
             lineChange(lbl63, dot62, dot64, player);
             flag62 = false;
             flag64 = false;
             gameBoard[3][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag42== true && player == true && gameBoard[2][5] == 0){
             lineChange(lbl52, dot62, dot42, player);
             flag62 = false;
             flag42 = false;
             gameBoard[2][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag42 == true && player == false && gameBoard[2][5] == 0) {
             lineChange(lbl52, dot62, dot42, player);
             flag62 = false;
             flag42 = false;
             gameBoard[2][5]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot64) {
@@ -1254,48 +1270,56 @@ public class DotsAndBoxesController {
             flag64 = false;
             flag62 = false;
             gameBoard[3][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag62 == true && player == false && gameBoard[3][6] == 0) {
             lineChange(lbl63, dot64, dot62, player);
             flag64 = false;
             flag62 = false;
             gameBoard[3][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag84== true && player == true && gameBoard[4][7] == 0){
             lineChange(lbl74, dot64, dot84, player);
             flag64 = false;
             flag84 = false;
             gameBoard[4][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag84 == true && player == false && gameBoard[4][7] == 0) {
             lineChange(lbl74, dot64, dot84, player);
             flag64 = false;
             flag84 = false;
             gameBoard[4][7]=1;
+            scoring();
             Player2Turn();
          }else if(flag66== true && player == true && gameBoard[5][6] == 0){
             lineChange(lbl65, dot64, dot66, player);
             flag64 = false;
             flag66 = false;
             gameBoard[5][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag66 == true && player == false && gameBoard[5][6] == 0) {
             lineChange(lbl65, dot64, dot66, player);
             flag64 = false;
             flag66 = false;
             gameBoard[5][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag44== true && player == true && gameBoard[4][5] == 0){
             lineChange(lbl54, dot64, dot44, player);
             flag64 = false;
             flag44 = false;
             gameBoard[4][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag44 == true && player == false && gameBoard[4][5] == 0) {
             lineChange(lbl54, dot64, dot44, player);
             flag64 = false;
             flag44 = false;
             gameBoard[4][5]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot66) {
@@ -1308,48 +1332,56 @@ public class DotsAndBoxesController {
             flag66 = false;
             flag64 = false;
             gameBoard[5][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag64 == true && player == false && gameBoard[5][6] == 0) {
             lineChange(lbl65, dot66, dot64, player);
             flag66 = false;
             flag64 = false;
             gameBoard[5][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag86== true && player == true && gameBoard[6][7] == 0){
             lineChange(lbl76, dot66, dot86, player);
             flag66 = false;
             flag86 = false;
             gameBoard[6][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag86 == true && player == false && gameBoard[6][7] == 0) {
             lineChange(lbl76, dot66, dot86, player);
             flag66 = false;
             flag86 = false;
             gameBoard[6][7]=1;
+            scoring();
             Player2Turn();
          }else if(flag68== true && player == true && gameBoard[7][6] == 0){
             lineChange(lbl67, dot66, dot68, player);
             flag66 = false;
             flag68 = false;
             gameBoard[7][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag68 == true && player == false && gameBoard[7][6] == 0) {
             lineChange(lbl67, dot66, dot68, player);
             flag66 = false;
             flag68 = false;
             gameBoard[7][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag46== true && player == true && gameBoard[6][5] == 0){
             lineChange(lbl56, dot66, dot46, player);
             flag66 = false;
             flag46 = false;
             gameBoard[6][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag46 == true && player == false && gameBoard[6][5] == 0) {
             lineChange(lbl56, dot66, dot46, player);
             flag66 = false;
             flag46 = false;
             gameBoard[6][5]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot68) {
@@ -1362,36 +1394,42 @@ public class DotsAndBoxesController {
             flag68 = false;
             flag66 = false;
             gameBoard[7][6]=1;
+            scoring();
             Player1Turn();
          }else if(flag66 == true && player == false && gameBoard[7][6] == 0) {
             lineChange(lbl67, dot68, dot66, player);
             flag68 = false;
             flag66 = false;
             gameBoard[7][6]=1;
+            scoring();
             Player2Turn();
          }else if(flag88== true && player == true && gameBoard[8][7] == 0){
             lineChange(lbl78, dot68, dot88, player);
             flag68 = false;
             flag88 = false;
             gameBoard[8][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag88 == true && player == false && gameBoard[8][7] == 0) {
             lineChange(lbl78, dot68, dot88, player);
             flag68 = false;
             flag88 = false;
             gameBoard[8][7]=1;
+            scoring();
             Player2Turn();
          }else if(flag48== true && player == true && gameBoard[8][5] == 0){
             lineChange(lbl58, dot68, dot48, player);
             flag68 = false;
             flag48 = false;
             gameBoard[8][5]=1;
+            scoring();
             Player1Turn();
          }else if(flag48 == false && player == false && gameBoard[8][5] == 0) {
             lineChange(lbl58, dot68, dot48, player);
             flag68 = false;
             flag48 = false;
             gameBoard[8][5]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot80) {
@@ -1404,24 +1442,28 @@ public class DotsAndBoxesController {
             flag80 = false;
             flag82 = false;
             gameBoard[1][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag82 == true && player == false && gameBoard[1][8] == 0) {
             lineChange(lbl81, dot80, dot82, player);
             flag80 = false;
             flag82 = false;
             gameBoard[1][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag60== true && player == true && gameBoard[0][7] == 0){
             lineChange(lbl70, dot80, dot60, player);
             flag80 = false;
             flag60 = false;
             gameBoard[0][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag60 == true && player == false && gameBoard[0][7] == 0) {
             lineChange(lbl70, dot80, dot60, player);
             flag80 = false;
             flag60 = false;
             gameBoard[0][7]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot82) {
@@ -1434,36 +1476,42 @@ public class DotsAndBoxesController {
             flag82 = false;
             flag80 = false;
             gameBoard[1][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag80 == true && player == false && gameBoard[1][8] == 0) {
             lineChange(lbl81, dot82, dot80, player);
             flag82 = false;
             flag80 = false;
             gameBoard[1][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag84== true && player == true && gameBoard[3][8] == 0){
             lineChange(lbl83, dot82, dot84, player);
             flag82 = false;
             flag84 = false;
             gameBoard[3][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag84 == true && player == false && gameBoard[3][8] == 0) {
             lineChange(lbl83, dot82, dot84, player);
             flag82 = false;
             flag84 = false;
             gameBoard[3][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag62== true && player == true && gameBoard[2][7] == 0){
             lineChange(lbl72, dot82, dot62, player);
             flag82 = false;
             flag62 = false;
             gameBoard[2][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag62 == true && player == false && gameBoard[2][7] == 0) {
             lineChange(lbl72, dot82, dot62, player);
             flag82 = false;
             flag62 = false;
             gameBoard[2][7]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot84) {
@@ -1476,36 +1524,42 @@ public class DotsAndBoxesController {
             flag84 = false;
             flag82 = false;
             gameBoard[3][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag82 == true && player == false && gameBoard[3][8] == 0) {
             lineChange(lbl83, dot84, dot82, player);
             flag84 = false;
             flag82 = false;
             gameBoard[3][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag86== true && player == true && gameBoard[5][8] == 0){
             lineChange(lbl85, dot84, dot86, player);
             flag84 = false;
             flag86 = false;
             gameBoard[5][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag86 == true && player == false && gameBoard[5][8] == 0) {
             lineChange(lbl85, dot84, dot86, player);
             flag84 = false;
             flag86 = false;
             gameBoard[5][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag64== true && player == true && gameBoard[4][7] == 0){
             lineChange(lbl74, dot84, dot64, player);
             flag84 = false;
             flag64 = false;
             gameBoard[4][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag64 == true && player == false && gameBoard[4][7] == 0) {
             lineChange(lbl74, dot84, dot64, player);
             flag84 = false;
             flag64 = false;
             gameBoard[4][7]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot86) {
@@ -1518,36 +1572,42 @@ public class DotsAndBoxesController {
             flag86 = false;
             flag84 = false;
             gameBoard[5][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag84 == true && player == false && gameBoard[5][8] == 0) {
             lineChange(lbl85, dot86, dot84, player);
             flag86 = false;
             flag84 = false;
             gameBoard[5][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag88== true && player == true && gameBoard[7][8] == 0){
             lineChange(lbl87, dot86, dot88, player);
             flag86 = false;
             flag88 = false;
             gameBoard[7][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag88 == true && player == false && gameBoard[7][8] == 0) {
             lineChange(lbl87, dot86, dot88, player);
             flag86 = false;
             flag88 = false;
             gameBoard[7][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag66== true && player == true && gameBoard[6][7] == 0) {
             lineChange(lbl76, dot86, dot66, player);
             flag86 = false;
             flag66 = false;
             gameBoard[6][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag66 == true && player == false && gameBoard[6][7] == 0) {
             lineChange(lbl76, dot86, dot66, player);
             flag86 = false;
             flag66 = false;
             gameBoard[6][7]=1;
+            scoring();
             Player2Turn();
          }
       }else if(event.getSource() == dot88) {
@@ -1560,24 +1620,28 @@ public class DotsAndBoxesController {
             flag88 = false;
             flag86 = false;
             gameBoard[7][8]=1;
+            scoring();
             Player1Turn();
          }else if(flag86 == true && player == false && gameBoard[7][8] == 0) {
             lineChange(lbl87, dot88, dot86, player);
             flag88 = false;
             flag86 = false;
             gameBoard[7][8]=1;
+            scoring();
             Player2Turn();
          }else if(flag68== true && player == true && gameBoard[8][7] == 0){
             lineChange(lbl78, dot88, dot68, player);
             flag88 = false;
             flag68 = false;
             gameBoard[8][7]=1;
+            scoring();
             Player1Turn();
          }else if(flag68 == true && player == false && gameBoard[8][7] == 0) {
             lineChange(lbl78, dot88, dot68, player);
             flag88 = false;
             flag68 = false;
             gameBoard[8][7]=1;
+            scoring();
             Player2Turn();
          }
       }
