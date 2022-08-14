@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -280,12 +282,53 @@ public class DotsAndBoxesController {
    }
 
    private void addPoint(Boolean player){
-      if(player){
+      if(!player){
          playerOneScore+=1;
          lblPlayerOneScore.setText(Integer.toString(playerOneScore));
       }else{
          playerTwoScore+=1;
          lblPlayerTwoScore.setText(Integer.toString(playerTwoScore));
+      }
+   }
+
+   private void endOfGame(){
+      if (playerOneScore + playerTwoScore == 16){
+         if (playerOneScore > playerTwoScore){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("We have a WINNER!!!");
+            alert.setHeaderText("Player 1 has won this game.");
+            alert.setContentText("Take your picture now, when this window is closed the game will end!");
+            alert.showAndWait().ifPresent(rs -> {
+               if (rs == ButtonType.OK || rs == ButtonType.CLOSE) {
+                  System.out.println("Game Ended");
+                  System.exit(1);
+               }
+            });
+         }
+         else if (playerTwoScore > playerOneScore){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("We have a WINNER!!!");
+            alert.setHeaderText("Player 2 has won this game.");
+            alert.setContentText("Take your picture now, when this window is closed the game will end!");
+            alert.showAndWait().ifPresent(rs -> {
+               if (rs == ButtonType.OK || rs == ButtonType.CLOSE) {
+                  System.out.println("Game Ended");
+                  System.exit(1);
+               }
+            });
+         }
+         else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("It's a tie!!!");
+            alert.setHeaderText("Player 1 and Player 2 have tied.");
+            alert.setContentText("Take your picture now, when this window is closed the game will end!");
+            alert.showAndWait().ifPresent(rs -> {
+               if (rs == ButtonType.OK || rs == ButtonType.CLOSE) {
+                  System.out.println("Game Ended");
+                  System.exit(1);
+               }
+            });
+         }
       }
    }
 
@@ -354,6 +397,7 @@ public class DotsAndBoxesController {
          boxes[15] = 1;
          addPoint(player);
       }
+      endOfGame();
    }
 
    private void lineChange(Label lbl, Button btn, Button btn2, Boolean player) {
@@ -1726,6 +1770,7 @@ public class DotsAndBoxesController {
       initializeHorizontalLabel(lbl78);
       //endregion
 
+      Player2Turn();
    }
 
    private void initializeHorizontalLabel(Label lbl) {
